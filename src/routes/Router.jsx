@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Wallet from "../pages/Wallet";
 import AddQuestion from "../pages/AddQuestion";
+import AddMember from "../pages/AddMember";
 
 
 
@@ -16,8 +17,16 @@ const Router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             {
+                path: '/',
+                element: <MainContent />
+            },
+            {
                 path: '/dashboard',
                 element: <MainContent />
+            },
+            {
+                path: '/addMember',
+                element: <AddMember />
             },
             {
                 path: '/home',

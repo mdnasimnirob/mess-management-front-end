@@ -6,13 +6,17 @@ import Sidebar from "../component/Sidebar";
 
 
 
+
 const MainLayout = () => {
 
     return (
-        <div>
+        <div className="container mx-auto">
             <TopNavbar />
-            {/* <Sidebar /> */}
-            <Outlet />
+
+            <div className=" pt-20  px-4 md:px-0 lg:px-0" >
+                {/* <Sidebar /> */}
+                <Outlet />
+            </div>
             <Navbar />
             {/* <MainContent></MainContent> */}
 
