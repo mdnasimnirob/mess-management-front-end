@@ -36,17 +36,23 @@ const TopNavbar = () => {
 
 
         <nav className="  bg-white border-gray-200 dark:bg-gray-900">
-            <div className=" fixed z-40 w-full h-13 bg-white shadow-sm  shadow-gray-200 -translate-y-1  max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
+            {/* <div className="  lg:rounded-2xl  w-full h-13 bg-white shadow-sm  shadow-gray-200 navbar p-4">
+                <div className="navbar-start flex items-center space-x-3 rtl:space-x-reverse">
                     <button onClick={handleToggleMenu} className=" bg-gray-100 p-2 px-3 visible lg:hidden md:hidden  ">
                         <RiMenu2Line className="text-3xl text-black hover:text-blue-600" />
                     </button>
                     <NavLink to='/profile'>
-                        <IoPersonCircleOutline className="text-5xl" />
+                        <IoPersonCircleOutline className="text-5xl visible lg:hidden md:hidden " />
                     </NavLink>
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Demo</span>
                 </div>
-                <div className="">
+                <div className="navbar-end flex items-start gap-3">
+
+                    <a>n</a>
+                    <a>n</a>
+                    <a>n</a>
+                    <a>n</a>
+                    <a>n</a>
                     <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <span className="sr-only">Open user menu</span>
                         <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
@@ -54,7 +60,40 @@ const TopNavbar = () => {
 
                 </div>
 
+            </div> */}
+
+
+            <div className="  flex justify-between items-center w-full px-6 py-3 bg- shadow-sm">
+
+                <div className="flex items-center space-x-3">
+                    <button
+                        onClick={handleToggleMenu}
+                        className="bg-gray-100 p-2 px-3 lg:hidden md:hidden"
+                    >
+                        <RiMenu2Line className="text-3xl text-black hover:text-blue-600" />
+                    </button>
+
+                    <NavLink to="/profile" className="lg:hidden md:hidden">
+                        <IoPersonCircleOutline className="text-5xl" />
+                    </NavLink>
+
+                    <span className="text-2xl px-9 font-semibold">Demo</span>
+                </div>
+
+
+                <div className="flex items-center ">
+                    <a href="#">n</a>
+                    <a href="#">n</a>
+                    <a href="#">n</a>
+                    <a href="#">n</a>
+                    <a href="#">n</a>
+                </div>
             </div>
+
+
+
+
+
             <div ref={menuRef} className={`fixed top-0 left-0 z-40 w-[250px] h-screen p-4 overflow-y-auto transition-transform ${open ? 'translate-x-0' : '-translate-x-80 '} bg-white dark:bg-gray-800`}>
                 <div className="shadow-[rgba(0,0,15,0.5)_0px_2px_0px_0px] shadow-gray-100 bg-white">
                     <img className="w-12 ms-2" src="/src/assets/logo (2).png" alt="" />
