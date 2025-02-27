@@ -36,23 +36,23 @@ const MainLayout = () => {
 
         <div className="mx-auto">
 
-            <div className={`fixed  top-0 z-40 w-full bg-white shadow-md transition-all duration-300  ml-0   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] lg:left-[230px]" : "lg:w-full lg:left-0"}`}>
+            <div className={`fixed  top-0 z-40 w-full bg-white lg:rounded-xl shadow-md transition-all duration-300  ml-0   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] lg:left-[224px] lg:transition-all lg:duration-500" : "lg:w-[calc(100%-80px)]  lg:left-20 transition-all duration-500"}`}>
                 <TopNavbar />
             </div>
 
             <div className="lg:flex">
 
-                <div className={`lg:fixed hidden lg:block md:block sm:hidden left-0 -top-3 h-screen bg- p-3 transition-all duration-300 z-40 ${isSidebarOpen ? "w-52" : "w-[69px] overflow-hidden"}`}>
+                <div className={`lg:fixed hidden bg-gray-100 lg:block md:block sm:hidden left-0 top-0 h-screen bg- px-1 z-40 ${isSidebarOpen ? "w-52 transition-all duration-500 overflow-hidden " : "w-[57px] transition-all duration-500  overflow-hidden"}`}>
                     <Sidebar />
                 </div>
 
-                <div className={`lg:pt-20 pt-20 w-full md:pt-20 px-4 transition-all duration-300 ${isSidebarOpen ? "lg:ml-56" : "lg:ml-16"}`}>
+                <div className={`lg:pt-20 pt-20 w-full md:pt-20   ${isSidebarOpen ? "lg:ml-56 lg:pr-4 transition-all duration-500 " : "lg:ml-16 lg:pl-2 lg:pr-2 transition-all duration-500"}`}>
 
                     <button
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        className={`lg:fixed hidden lg:block md:block sm:hidden z-40 -top-2 left-0 mt-4 bg-gray-200 p-2 rounded-md  text-blue-800 ${isSidebarOpen ? "lg:left-40" : "lg:left-5"}`}
+                        className={`lg:fixed hidden lg:block md:block sm:hidden z-40 -top-2 left-0 mt-4 bg-gray-200 p-2 rounded-md  text-blue-800 ${isSidebarOpen ? "lg:left-40 transition-all duration-500" : "lg:left-3 transition-all duration-500"}`}
                     >
-                        <RiMenu2Line className="text-3xl" />
+                        <RiMenu2Line className="text-xl" />
                     </button>
 
                     <Outlet />

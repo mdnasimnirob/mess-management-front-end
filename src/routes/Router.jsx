@@ -7,6 +7,14 @@ import Profile from "../pages/Profile";
 import Wallet from "../pages/Wallet";
 import AddQuestion from "../pages/AddQuestion";
 import AddMember from "../pages/AddMember";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+import MealRequest from "../pages/MealRequest";
+import AddDeposit from "../pages/AddDeposit";
+import AddMeal from "../pages/AddMeal";
+import AddCost from "../pages/AddCost";
+import AllMember from "../pages/AllMember";
+import ChangeManager from "../pages/ChangeManager";
 
 
 
@@ -51,6 +59,46 @@ const Router = createBrowserRouter([
             {
                 path: '/question',
                 element: <AddQuestion />
+            }
+            ,
+            {
+                path: '/register',
+                element: <Register />
+            }
+            ,
+            {
+                path: '/login',
+                element: <Login />
+            }
+            ,
+            {
+                path: '/mealRequest',
+                element: <MealRequest />
+            }
+            ,
+            {
+                path: '/addDeposit',
+                element: <AddDeposit />
+            }
+            ,
+            {
+                path: '/addMeal',
+                element: <AddMeal />
+            }
+            ,
+            {
+                path: '/addCost',
+                element: <AddCost />
+            }
+            ,
+            {
+                path: '/allMember',
+                element: <AllMember />
+            }
+            ,
+            {
+                path: '/changeManager',
+                element: <ChangeManager />
             }
         ]
     }
