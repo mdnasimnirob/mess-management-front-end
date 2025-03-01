@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { BsFacebook } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 
 
@@ -45,13 +47,20 @@ const Login = () => {
                                 />
                             </div>
 
-                            <div>
-                                <input type="submit" value='Register' className="btn btn-primary mt-4 w-full shadow-lg shadow-stone-500 border-gray-600 p-2" />
+                            <div className="text-center">
+                                <input type="submit" value='Login' className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-4 w-full shadow-lg shadow-stone-300 border-gray-300 p-2" />
+                                <h2 className="font-medium text-base py-1">or sign in with</h2>
+                                <div className="flex flex-row gap-3 items-center justify-center text-center">
+                                    <button className="btn"><span><FcGoogle /> </span> <span>Google</span></button>
+                                    <button className="btn"><span><BsFacebook className="text-blue-600" /></span>
+                                        <span>Facebook</span></button>
+                                    <button></button>
+                                </div>
                             </div>
 
                         </div>
                     </form>
-                    <div>
+                    <div className="text-center">
                         <h3>Do not have Account ? please <NavLink to='/register'><span className="font-bold">Register</span></NavLink></h3>
                     </div>
                 </div>
