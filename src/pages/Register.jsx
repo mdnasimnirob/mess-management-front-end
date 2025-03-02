@@ -1,17 +1,44 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
+import { AuthContexts } from "../providers/AuthProviders";
+import { Alert } from "flowbite-react";
 
 
 const Register = () => {
+    const { googleLogin, facebookLogin } = useContext(AuthContexts);
     const { handleSubmit, register } = useForm();
     const onSubmit = (data) => {
         console.log(data);
 
 
     }
-    console.log(onSubmit);
+
+    const handleGoogle = () => {
+        googleLogin()
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    };
+
+    const handleFacebook = () => {
+        facebookLogin()
+            .then(result => {
+                console.log(result.user)
+                alert('user create succesfully')
+            })
+            .catch(error => {
+                console.error(error)
+                Alert('something with wrong')
+
+            })
+    }
     return (
         <div className="lg:mt-0 mt-10">
             <div className="card mb-4 bg-gray-100">
@@ -66,10 +93,9 @@ const Register = () => {
                                 <input type="submit" value='Register' className=" btn hover:bg-blue-500 bg-blue-600 border-none rounded-md my-4 w-full shadow-lg shadow-stone-500 border-gray-600 p-2" />
                                 <h2 className="font-medium text-base py-1">or sign in with</h2>
                                 <div className="flex flex-row gap-1 items-center justify-center text-center">
-                                    <button className="btn"><span><FcGoogle /> </span> <span>Google</span></button>
-                                    <button className="btn"><span><BsFacebook className="text-blue-600" /></span>
+                                    <button onClick={handleGoogle} className="btn"><span><FcGoogle /> </span> <span>Google</span></button>
+                                    <button onClick={handleFacebook} className="btn"><span><BsFacebook className="text-blue-600" /></span>
                                         <span>Facebook</span></button>
-                                    <button></button>
                                 </div>
                             </div>
 
