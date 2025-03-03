@@ -20,6 +20,7 @@ const Register = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user)
+                Alert('user create succesfully')
             })
             .catch(error => {
                 console.error(error);
@@ -64,15 +65,15 @@ const Register = () => {
                             </div>
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="email-default-fullname">
-                                    Email
+                                    Phone
                                 </label>
                                 <input
-                                    {...register("email", { required: true })}
-                                    name="email"
-                                    type="email"
+                                    {...register("phone", { required: true })}
+                                    name="phone"
+                                    type="number"
                                     className="form-control w-full"
                                     id="email-default-fullname"
-                                    placeholder="Email"
+                                    placeholder="phone"
                                 />
                             </div>
                             <div className="mb-3">
@@ -90,7 +91,8 @@ const Register = () => {
                             </div>
 
                             <div className="text-center">
-                                <input type="submit" value='Register' className=" btn hover:bg-blue-500 bg-blue-600 border-none rounded-md my-4 w-full shadow-lg shadow-stone-500 border-gray-600 p-2" />
+                                <button type="submit" className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-4 w-full shadow-lg shadow-stone-300 border-gray-300 p-2 text-white text-lg font-normal">Register</button>
+                                {/* <input type="submit" value='Register' className=" btn hover:bg-blue-500 bg-blue-600 border-none rounded-md my-4 w-full shadow-lg shadow-stone-500 border-gray-600 p-2" /> */}
                                 <h2 className="font-medium text-base py-1">or sign in with</h2>
                                 <div className="flex flex-row gap-1 items-center justify-center text-center">
                                     <button onClick={handleGoogle} className="btn"><span><FcGoogle /> </span> <span>Google</span></button>
@@ -102,7 +104,7 @@ const Register = () => {
                         </div>
                     </form>
                     <div className="text-center">
-                        <h3>Alrealy have an Account ? please Login <NavLink to='/login'><span className="font-bold">Login</span></NavLink></h3>
+                        <h3 className="text-sm font-normal text-gray-700">Alrealy have an Account ?  please <NavLink to='/login'><span className="font-bold text-blue-600">Login</span></NavLink></h3>
                     </div>
                 </div>
             </div>

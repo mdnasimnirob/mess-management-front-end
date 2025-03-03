@@ -1,16 +1,45 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
+import { AuthContexts } from "../providers/AuthProviders";
+
 
 
 const Login = () => {
+    const { googleLogin, facebookLogin } = useContext(AuthContexts);
     const { handleSubmit, register } = useForm();
     const onSubmit = (data) => {
         console.log(data);
     }
+
+    const handleGoogle = () => {
+        googleLogin()
+            .then(result => {
+                console.log(result.user)
+                alert('user create succesfully')
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    };
+
+    const handleFacebook = () => {
+        facebookLogin()
+            .then(result => {
+                console.log(result.user)
+                alert('user create succesfully')
+            })
+            .catch(error => {
+                console.error(error)
+                alert('something with wrong')
+
+            })
+    }
     return (
-        <div className="mt-20 lg:mt-2 ">
+        <div className="mt-10 lg:mt-2 ">
             <div className="card flex justify-center mb-4 bg-gray-100">
                 <div className="card-header d-flex justify-content-between align-items-center ">
                     <h5 className="mb-2 font-semibold pt-4 px-6 text-center mt-4 text-3xl">Login Please</h5>
@@ -22,15 +51,15 @@ const Login = () => {
 
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="email-default-fullname">
-                                    Email
+                                    Phone
                                 </label>
                                 <input
-                                    {...register("email", { required: true })}
-                                    name="email"
-                                    type="email"
+                                    {...register("phone", { required: true })}
+                                    name="phone"
+                                    type="number"
                                     className="form-control w-full"
                                     id="email-default-fullname"
-                                    placeholder="Email"
+                                    placeholder="phone"
                                 />
                             </div>
                             <div className="mb-3">
@@ -48,11 +77,11 @@ const Login = () => {
                             </div>
 
                             <div className="text-center">
-                                <input type="submit" value='Login' className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-4 w-full shadow-lg shadow-stone-300 border-gray-300 p-2" />
+                                <button type="submit" className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-4 w-full shadow-lg shadow-stone-300 border-gray-300 p-2 text-white text-lg font-normal">Login</button>
                                 <h2 className="font-medium text-base py-1">or sign in with</h2>
                                 <div className="flex flex-row gap-3 items-center justify-center text-center">
-                                    <button className="btn"><span><FcGoogle /> </span> <span>Google</span></button>
-                                    <button className="btn"><span><BsFacebook className="text-blue-600" /></span>
+                                    <button onClick={handleGoogle} className="btn"><span><FcGoogle /> </span> <span>Google</span></button>
+                                    <button onClick={handleFacebook} className="btn"><span><BsFacebook className="text-blue-600" /></span>
                                         <span>Facebook</span></button>
                                     <button></button>
                                 </div>
@@ -61,7 +90,7 @@ const Login = () => {
                         </div>
                     </form>
                     <div className="text-center">
-                        <h3>Do not have Account ? please <NavLink to='/register'><span className="font-bold">Register</span></NavLink></h3>
+                        <h3 className="font-normal text-sm text-gray-700">Do not have Account ? please <NavLink to='/register'><span className="font-bold text-blue-600">Register</span></NavLink></h3>
                     </div>
                 </div>
             </div>
