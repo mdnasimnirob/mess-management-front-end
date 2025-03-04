@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, } from "react";
 import app from "../firebase/firebase.config";
-import { FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, RecaptchaVerifier, signInWithEmailAndPassword, signInWithPhoneNumber, signInWithPopup, signOut } from "firebase/auth";
 
 export const AuthContexts = createContext(null)
 
@@ -11,6 +11,45 @@ const facebookProvider = new FacebookAuthProvider;
 const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+
+    const userRegister = (name, email, password) => {
+        return createUserWithEmailAndPassword(auth, name, email, password)
+    }
+
+    // 🔹 Function to send OTP using Firebase Authentication
+    // const userRegister = async (phoneNumber) => {
+    //     setLoading(true);
+    //     try {
+    //         // Initialize reCAPTCHA only once
+    //         if (!window.recaptchaVerifier) {
+    //             window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+    //                 size: "invisible",
+    //                 callback: (response) => {
+    //                     console.log("Recaptcha Verified", response);
+    //                 },
+    //                 "expired-callback": () => {
+    //                     console.error("Recaptcha expired");
+    //                 },
+    //             });
+    //             await window.recaptchaVerifier.render();
+    //         }
+
+    //         // Send OTP to phone number
+    //         const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier);
+    //         setLoading(false);
+    //         return confirmationResult; // Required for OTP verification
+    //     } catch (error) {
+    //         setLoading(false);
+    //         console.error("Firebase Registration Error:", error);
+    //         throw error;
+    //     }
+    // };
+
+    const userSignIn = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password);
+    }
 
     const googleLogin = () => {
         setLoading(true)
@@ -29,9 +68,10 @@ const AuthProviders = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            console.log('user state change', currentUser);
             setUser(currentUser);
             setLoading(false)
-            console.log(currentUser)
+
         });
         return () => {
             unSubscribe();
@@ -39,11 +79,13 @@ const AuthProviders = ({ children }) => {
     }, [])
 
     const info = {
+        userRegister,
+        userSignIn,
         user,
         googleLogin,
         facebookLogin,
         LogOut,
-        loading
+        loading,
 
     }
 

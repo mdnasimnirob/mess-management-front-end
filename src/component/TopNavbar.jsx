@@ -15,7 +15,7 @@ import { CiLogout } from "react-icons/ci";
 const TopNavbar = () => {
 
     const { user, LogOut } = useContext(AuthContexts);
-    console.log(user);
+    // console.log(user);
 
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
@@ -99,7 +99,7 @@ const TopNavbar = () => {
                     <NavLink to="/profile" className="lg:hidden md:hidden">
                         {
                             user ?
-                                <><img src={user.photoURL} alt="null" /></> : <IoPersonCircleOutline className="text-4xl" />
+                                <img className="w-9 rounded-3xl" src={user.photoURL} alt="photo" /> : <IoPersonCircleOutline className="text-4xl" />
                         }
                     </NavLink>
                 </div>

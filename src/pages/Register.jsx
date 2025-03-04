@@ -4,23 +4,99 @@ import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
-import { Alert } from "flowbite-react";
+// import PhoneInput from "react-phone-input-2";
+import 'react-phone-input-2/lib/style.css'
+
 
 
 const Register = () => {
-    const { googleLogin, facebookLogin } = useContext(AuthContexts);
+    // const [phone, setPhone] = useState('');
+    // const [otp, setOtp] = useState("");
+    // const [confirmationResult, setConfirmationResult] = useState(null);
+    const { googleLogin, facebookLogin, userRegister } = useContext(AuthContexts);
     const { handleSubmit, register } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
 
 
-    }
+    const onSubmit = async (data) => {
+        try {
+            const result = await userRegister(data);
+            console.log(result.user);
+            alert("User registered successfully!");
+        } catch (error) {
+            console.error(error);
+            alert(error.message || "Something went wrong!");
+        }
+    };
+
+    // const handleRegister = (e) => {
+    //     e.preventDefault();
+    //     console.log(e.currentTarget);
+    //     const form = new FormData(e.currentTarget);
+    //     console.log(form);
+    //     const name = form.get('name');
+    //     const phone = form.get('phone');
+    //     const password = form.get('password');
+    //     console.log(name, phone, password);
+
+    //     userRegister(name, phone, password)
+    //         .then(result => {
+    //             console.log(result.user)
+    //             alert('user create succesfully')
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //             alert('something with wrong')
+
+    //         })
+    // }
+
+
+    // const handleRegister = async (e) => {
+    //     e.preventDefault();
+    //     const form = new FormData(e.currentTarget);
+    //     const name = form.get("name");
+    //     const password = form.get("password");
+
+    //     if (!phone) {
+    //         alert("Please enter a valid phone number");
+    //         return;
+    //     }
+
+    //     try {
+    //         // 🔹 Ensure the phone number starts with "+"
+    //         const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+    //         console.log("Formatted Phone:", formattedPhone); // Debugging
+    //         const result = await userRegister(formattedPhone);
+    //         setConfirmationResult(result);
+    //         alert("OTP sent to your phone. Enter OTP to verify.");
+    //     } catch (error) {
+    //         console.error("Registration Error:", error);
+    //         alert(error.message || "Something went wrong!");
+    //     }
+    // };
+
+    // const handleVerifyOtp = async (e) => {
+    //     e.preventDefault();
+    //     if (!confirmationResult) {
+    //         alert("First request an OTP!");
+    //         return;
+    //     }
+
+    //     try {
+    //         const result = await confirmationResult.confirm(otp);
+    //         console.log("User Verified:", result.user);
+    //         alert("User registered successfully!");
+    //     } catch (error) {
+    //         console.error("OTP Verification Error:", error);
+    //         alert(error.message || "Invalid OTP!");
+    //     }
+    // };
 
     const handleGoogle = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user)
-                Alert('user create succesfully')
+                alert('user create succesfully')
             })
             .catch(error => {
                 console.error(error);
@@ -36,7 +112,7 @@ const Register = () => {
             })
             .catch(error => {
                 console.error(error)
-                Alert('something with wrong')
+                alert('something with wrong')
 
             })
     }
@@ -58,24 +134,43 @@ const Register = () => {
                                     {...register("name", { required: true })}
                                     name="name"
                                     type="text"
-                                    className="form-control w-full"
+                                    className="form-control w-full pl-2 lg:h-12 py-3 rounded-md border-[#CACACA]"
                                     id="name-default-fullname"
                                     placeholder="User Name"
                                 />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="email-default-fullname">
-                                    Phone
+                                    Email
                                 </label>
                                 <input
-                                    {...register("phone", { required: true })}
-                                    name="phone"
-                                    type="number"
-                                    className="form-control w-full"
+                                    {...register("email", { required: true })}
+                                    name="email"
+                                    type="email"
+                                    className="form-control w-full pl-2 lg:h-12 py-3 rounded-md border-[#CACACA]"
                                     id="email-default-fullname"
-                                    placeholder="phone"
+                                    placeholder="User Name"
                                 />
                             </div>
+
+
+                            {/* <div className="mb-3 ">
+                                <label className="form-label" htmlFor="name-default-fullname">
+                                    Phone
+                                </label>
+                                <PhoneInput
+                                    value={phone}
+                                    onChange={(value) => {
+                                        const formattedPhone = value.startsWith("+") ? value : `+${value}`;
+                                        setPhone(formattedPhone); // Ensure the phone number is properly formatted with a "+"
+                                    }}
+                                    country={'bd'}
+                                    containerStyle={{ width: '100 %', }}
+                                    inputStyle={{ width: '100%', paddingLeft: "3rem", height: "3rem" }}
+                                    buttonStyle={{ borderRadius: "0.375rem" }}
+                                />
+
+                            </div> */}
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="password-default-fullname">
                                     Password
@@ -84,9 +179,9 @@ const Register = () => {
                                     {...register("password", { required: true })}
                                     name="password"
                                     type="password"
-                                    className="form-control w-full"
-
-                                    placeholder="password"
+                                    className="form-control w-full pl-2 lg:h-12 py-3 rounded-md border-[#CACACA]"
+                                    id="password-default-fullname"
+                                    placeholder="Password"
                                 />
                             </div>
 
@@ -103,6 +198,20 @@ const Register = () => {
 
                         </div>
                     </form>
+                    <div id="recaptcha-container"></div> {/* Firebase reCAPTCHA */}
+
+                    {/* {confirmationResult && (
+                        <form onSubmit={handleVerifyOtp} className="mt-4 space-y-4">
+                            <input
+                                type="text"
+                                placeholder="Enter OTP"
+                                onChange={(e) => setOtp(e.target.value)}
+                                className="input input-bordered w-full"
+                            />
+                            <button type="submit" className="btn btn-success w-full">Verify OTP</button>
+                        </form>
+                    )} */}
+
                     <div className="text-center">
                         <h3 className="text-sm font-normal text-gray-700">Alrealy have an Account ?  please <NavLink to='/login'><span className="font-bold text-blue-600">Login</span></NavLink></h3>
                     </div>
