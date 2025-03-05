@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 // import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css'
@@ -10,6 +10,7 @@ import 'react-phone-input-2/lib/style.css'
 
 
 const Register = () => {
+    const navigate = useNavigate();
     // const [phone, setPhone] = useState('');
     // const [otp, setOtp] = useState("");
     // const [confirmationResult, setConfirmationResult] = useState(null);
@@ -18,8 +19,12 @@ const Register = () => {
 
 
     const onSubmit = async (data) => {
+        const name = data.name;
+        const email = data.email;
+        const password = data.password;
+        console.log(name, email, password);
         try {
-            const result = await userRegister(data);
+            const result = await userRegister(name, email, password);
             console.log(result.user);
             alert("User registered successfully!");
         } catch (error) {
@@ -96,6 +101,7 @@ const Register = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user)
+                navigate('/');
                 alert('user create succesfully')
             })
             .catch(error => {

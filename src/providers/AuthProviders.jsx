@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, } from "react";
 import app from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, RecaptchaVerifier, signInWithEmailAndPassword, signInWithPhoneNumber, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 export const AuthContexts = createContext(null)
 
@@ -76,7 +76,8 @@ const AuthProviders = ({ children }) => {
         return () => {
             unSubscribe();
         }
-    }, [])
+    }, []);
+
 
     const info = {
         userRegister,

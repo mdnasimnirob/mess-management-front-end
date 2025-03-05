@@ -96,11 +96,23 @@ const TopNavbar = () => {
 
 
                 <div className="flex items-center ">
-                    <NavLink to="/profile" className="lg:hidden md:hidden">
-                        {
-                            user ?
+                    <NavLink to="/profile" className="lg:hidden md:hidden btn btn-ghost btn-circle avatar">
+                        {/* {
+                            user?.photoURL ?
                                 <img className="w-9 rounded-3xl" src={user.photoURL} alt="photo" /> : <IoPersonCircleOutline className="text-4xl" />
-                        }
+                        } */}
+                        <div className="w-10 rounded-full">
+                            {user?.photoURL ? (
+                                // Display user profile picture
+                                <img src={user.photoURL} alt="User Profile" className="rounded-full" />
+                            ) : (
+                                // Display default profile picture and "Sign In" link
+
+                                <IoPersonCircleOutline className="text-4xl" />
+                            )}
+
+
+                        </div>
                     </NavLink>
                 </div>
             </div>
