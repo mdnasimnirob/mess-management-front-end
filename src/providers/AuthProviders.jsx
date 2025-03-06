@@ -13,8 +13,8 @@ const AuthProviders = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
 
-    const userRegister = (name, email, password) => {
-        return createUserWithEmailAndPassword(auth, name, email, password)
+    const userRegister = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     // 🔹 Function to send OTP using Firebase Authentication

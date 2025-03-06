@@ -24,7 +24,7 @@ const Register = () => {
         const password = data.password;
         console.log(name, email, password);
         try {
-            const result = await userRegister(name, email, password);
+            const result = await userRegister(email, password);
             console.log(result.user);
             alert("User registered successfully!");
         } catch (error) {
@@ -140,7 +140,7 @@ const Register = () => {
                                     {...register("name", { required: true })}
                                     name="name"
                                     type="text"
-                                    className="form-control w-full pl-2 lg:h-12 py-3 rounded-md border-[#CACACA]"
+                                    className="form-control w-full pl-2  py-3 rounded-md border-[#CACACA] text-sm"
                                     id="name-default-fullname"
                                     placeholder="User Name"
                                 />
@@ -153,9 +153,9 @@ const Register = () => {
                                     {...register("email", { required: true })}
                                     name="email"
                                     type="email"
-                                    className="form-control w-full pl-2 lg:h-12 py-3 rounded-md border-[#CACACA]"
+                                    className="form-control w-full pl-2  py-3 rounded-md border-[#CACACA] text-sm"
                                     id="email-default-fullname"
-                                    placeholder="User Name"
+                                    placeholder="Email"
                                 />
                             </div>
 
@@ -185,14 +185,14 @@ const Register = () => {
                                     {...register("password", { required: true })}
                                     name="password"
                                     type="password"
-                                    className="form-control w-full pl-2 lg:h-12 py-3 rounded-md border-[#CACACA]"
+                                    className="form-control w-full pl-2  py-3 rounded-md border-[#CACACA] text-sm"
                                     id="password-default-fullname"
                                     placeholder="Password"
                                 />
                             </div>
 
                             <div className="text-center">
-                                <button type="submit" className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-4 w-full shadow-lg shadow-stone-300 border-gray-300 p-2 text-white text-lg font-normal">Register</button>
+                                <button type="submit" className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-3 w-full shadow-lg shadow-stone-300 border-gray-300 p-2 text-white text-lg font-normal">Register</button>
                                 {/* <input type="submit" value='Register' className=" btn hover:bg-blue-500 bg-blue-600 border-none rounded-md my-4 w-full shadow-lg shadow-stone-500 border-gray-600 p-2" /> */}
                                 <h2 className="font-medium text-base py-1">or sign in with</h2>
                                 <div className="flex flex-row gap-1 items-center justify-center text-center">
@@ -218,7 +218,7 @@ const Register = () => {
                         </form>
                     )} */}
 
-                    <div className="text-center">
+                    <div className="text-center mb-4">
                         <h3 className="text-sm font-normal text-gray-700">Alrealy have an Account ?  please <NavLink to='/login'><span className="font-bold text-blue-600">Login</span></NavLink></h3>
                     </div>
                 </div>

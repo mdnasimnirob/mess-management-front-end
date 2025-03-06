@@ -2,16 +2,32 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 
 
 
 const Login = () => {
-    const { googleLogin, facebookLogin } = useContext(AuthContexts);
+    const { googleLogin, facebookLogin, userSignIn } = useContext(AuthContexts);
     const { handleSubmit, register } = useForm();
+    const navigate = useNavigate();
     const onSubmit = (data) => {
-        console.log(data);
+        const email = data.email;
+        const password = data.password;
+        console.log(email, password);
+
+        userSignIn(email, password)
+            .then(result => {
+                navigate('/')
+                alert('user found')
+
+                console.log(result.user)
+            })
+            .catch(error => {
+                console.error(error);
+
+            })
+
     }
 
     const handleGoogle = () => {
@@ -51,15 +67,15 @@ const Login = () => {
 
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="email-default-fullname">
-                                    Phone
+                                    Email
                                 </label>
                                 <input
-                                    {...register("phone", { required: true })}
-                                    name="phone"
-                                    type="number"
-                                    className="form-control w-full"
+                                    {...register("email", { required: true })}
+                                    name="email"
+                                    type="email"
+                                    className="form-control w-full pl-2  py-3 rounded-md border-[#CACACA] text-sm"
                                     id="email-default-fullname"
-                                    placeholder="phone"
+                                    placeholder="Email"
                                 />
                             </div>
                             <div className="mb-3">
@@ -70,14 +86,14 @@ const Login = () => {
                                     {...register("password", { required: true })}
                                     name="password"
                                     type="password"
-                                    className="form-control w-full"
+                                    className="form-control w-full pl-2  py-3 rounded-md border-[#CACACA] text-sm"
 
-                                    placeholder="password"
+                                    placeholder="Password"
                                 />
                             </div>
 
                             <div className="text-center">
-                                <button type="submit" className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-4 w-full shadow-lg shadow-stone-300 border-gray-300 p-2 text-white text-lg font-normal">Login</button>
+                                <button type="submit" className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-3 w-full shadow-lg shadow-stone-300 border-gray-300 p-2 text-white text-lg font-normal">Login</button>
                                 <h2 className="font-medium text-base py-1">or sign in with</h2>
                                 <div className="flex flex-row gap-3 items-center justify-center text-center">
                                     <button onClick={handleGoogle} className="btn"><span><FcGoogle /> </span> <span>Google</span></button>
@@ -89,7 +105,7 @@ const Login = () => {
 
                         </div>
                     </form>
-                    <div className="text-center">
+                    <div className="text-center mb-4">
                         <h3 className="font-normal text-sm text-gray-700">Do not have Account ? please <NavLink to='/register'><span className="font-bold text-blue-600">Register</span></NavLink></h3>
                     </div>
                 </div>
