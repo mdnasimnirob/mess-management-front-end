@@ -4,6 +4,7 @@ import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 
 
@@ -18,13 +19,19 @@ const Login = () => {
 
         userSignIn(email, password)
             .then(result => {
-                navigate('/')
-                alert('user found')
+                if (result) {
 
-                console.log(result.user)
+                    navigate('/')
+                    toast.success('Loging succesfully')
+                }
+
+                // console.log(result.user)
             })
             .catch(error => {
-                console.error(error);
+                // console.error(error);
+                if (error) {
+                    return toast.error('User Not Found')
+                }
 
             })
 
@@ -33,11 +40,15 @@ const Login = () => {
     const handleGoogle = () => {
         googleLogin()
             .then(result => {
-                console.log(result.user)
-                alert('user create succesfully')
+                if (result) {
+                    navigate('/')
+                    toast.success('Loging succesfully')
+                }
             })
             .catch(error => {
-                console.error(error);
+                if (error) {
+                    return toast.error('User Not Found')
+                }
             })
 
     };
@@ -45,13 +56,17 @@ const Login = () => {
     const handleFacebook = () => {
         facebookLogin()
             .then(result => {
-                console.log(result.user)
-                alert('user create succesfully')
+                // console.log(result.user)
+                if (result) {
+                    navigate('/')
+                    toast.success('Loging succesfully')
+                }
             })
             .catch(error => {
-                console.error(error)
-                alert('something with wrong')
-
+                // console.error(error)
+                if (error) {
+                    return toast.error('User Not Found')
+                }
             })
     }
     return (

@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 // import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css'
+import toast from "react-hot-toast";
 
 
 
@@ -100,26 +101,32 @@ const Register = () => {
     const handleGoogle = () => {
         googleLogin()
             .then(result => {
-                console.log(result.user)
-                navigate('/');
-                alert('user create succesfully')
+                if (result) {
+                    navigate('/')
+                    toast.success('Loging succesfully')
+                }
             })
             .catch(error => {
-                console.error(error);
+                if (error) {
+                    return toast.error('User Not Found')
+                }
             })
-
     };
 
     const handleFacebook = () => {
         facebookLogin()
             .then(result => {
-                console.log(result.user)
-                alert('user create succesfully')
+                // console.log(result.user)
+                if (result) {
+                    navigate('/')
+                    toast.success('Loging succesfully')
+                }
             })
             .catch(error => {
-                console.error(error)
-                alert('something with wrong')
-
+                // console.error(error)
+                if (error) {
+                    return toast.error('User Not Found')
+                }
             })
     }
     return (

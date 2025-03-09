@@ -8,7 +8,7 @@ export default defineConfig({
     host: "0.0.0.0", // Allow access from all devices on the network
     port: 5173, // Ensure the port is correct
     allowedHosts: [
-      "d290-113-11-90-196.ngrok-free.app", // Add your Ngrok hostname here
+      "a21c-113-11-90-206.ngrok-free.app", // Add your Ngrok hostname here
     ],
   },
 });

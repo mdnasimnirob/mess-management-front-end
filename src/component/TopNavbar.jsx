@@ -9,6 +9,7 @@ import { RiHome4Fill, RiMenu2Line, RiMoneyDollarBoxFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 import { CiLogout } from "react-icons/ci";
+import toast from "react-hot-toast";
 
 
 
@@ -43,10 +44,13 @@ const TopNavbar = () => {
     const handleLogOut = () => {
         LogOut()
             .then(() => {
-                alert('logout succesfully')
+                toast.success('Logged out successfully!')
+
             })
-            .catch(error => console.error(error)
-            )
+            .catch(error => {
+                console.error(error);
+                toast.error('Failed to log out. Please try again.');
+            });
     }
 
     return (
