@@ -1,9 +1,24 @@
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 const AddMember = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
+        fetch('http://localhost:5000/memberAdd', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast.success('Member Added Succesfully');
+                    reset();
+                }
+                console.log(data)
+            })
+
     };
     return (
         <div className="card mb-4 bg-gray-100">
@@ -38,7 +53,7 @@ const AddMember = () => {
                                     <span className="text-red-600">*</span>
                                 </label>
                                 <input
-                                    {...register("address", { required: false })}
+                                    {...register("address", { required: true })}
                                     name="address"
                                     type="text"
                                     className="form-control w-full"
@@ -65,16 +80,16 @@ const AddMember = () => {
                         <div className="col-lg-6">
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="basic-default-fullname">
-                                    Comming Form
+                                    Joining Date
                                     <span className="text-red-600">*</span>
                                 </label>
                                 <input
-                                    {...register("comming_form", { required: false })}
-                                    name="comming_form"
-                                    type="text"
+                                    {...register("joiningDate", { required: true })}
+                                    name="joiningDate"
+                                    type="date"
                                     className="form-control w-full"
                                     id="basic-default-fullname"
-                                    placeholder="Comming Form"
+                                    placeholder="Joining Date"
                                 />
                             </div>
                         </div>

@@ -93,7 +93,8 @@ const Router = createBrowserRouter([
             ,
             {
                 path: '/allMember',
-                element: <AllMember />
+                element: <AllMember />,
+                loader: () => fetch('http://localhost:5000/allMember'),
             }
             ,
             {

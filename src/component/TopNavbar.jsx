@@ -112,7 +112,7 @@ const TopNavbar = () => {
                         <div className="w-10 rounded-full">
                             {user?.photoURL ? (
                                 // Display user profile picture
-                                <img src={user.photoURL} alt="User Profile" className="rounded-full" />
+                                <img src={user?.photoURL} alt="User Profile" className="rounded-full" />
                             ) : (
                                 // Display default profile picture and "Sign In" link
 
