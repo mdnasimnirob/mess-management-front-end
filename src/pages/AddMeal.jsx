@@ -3,7 +3,7 @@
 const AddMeal = () => {
     return (
         <div>
-            <h3>hew add MEal</h3>
+            <h3>new add MEal</h3>
         </div>
     );
 };

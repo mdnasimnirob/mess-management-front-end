@@ -3,16 +3,21 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import TopNavbar from "../component/TopNavbar";
 import Sidebar from "../component/Sidebar";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RiMenu2Line } from "react-icons/ri";
 import { Toaster } from "react-hot-toast";
+import { AuthContexts } from "../providers/AuthProviders";
 
 
 
 
 const MainLayout = () => {
 
+    // const { loading } = useContext(AuthContexts);
+
+
     const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar toggle state
+
 
 
     return (
@@ -37,7 +42,9 @@ const MainLayout = () => {
 
 
 
+
         <div className="mx-auto">
+
 
             <Toaster position="top-center" />
 

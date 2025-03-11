@@ -15,8 +15,8 @@ import toast from "react-hot-toast";
 
 const TopNavbar = () => {
 
-    const { user, LogOut } = useContext(AuthContexts);
-    // console.log(user);
+    const { user, LogOut, loading } = useContext(AuthContexts);
+
 
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
@@ -26,6 +26,7 @@ const TopNavbar = () => {
     const handleToggleMenu = () => {
         setOpen((prev) => !prev);
     };
+
 
 
     useEffect(() => {
@@ -52,6 +53,7 @@ const TopNavbar = () => {
                 toast.error('Failed to log out. Please try again.');
             });
     }
+    console.log(user)
 
     return (
 
@@ -100,22 +102,20 @@ const TopNavbar = () => {
                 </div>
 
 
-                <div className="flex items-center ">
+                <div className="flex items-center gap-2 ">
                     <div>
                         <h2>{user?.displayName}</h2>
                     </div>
-                    <NavLink to="/profile" className="lg:hidden md:hidden btn btn-ghost btn-circle avatar">
+                    <NavLink to="/profile" className=" btn btn-ghost btn-circle avatar">
                         {/* {
                             user?.photoURL ?
                                 <img className="w-9 rounded-3xl" src={user.photoURL} alt="photo" /> : <IoPersonCircleOutline className="text-4xl" />
                         } */}
                         <div className="w-10 rounded-full">
-                            {user?.photoURL ? (
+                            {loading ? <IoPersonCircleOutline className="text-4xl" /> : user?.reloadUserInfo.photoUrl ? (
                                 // Display user profile picture
-                                <img src={user?.photoURL} alt="User Profile" className="rounded-full" />
+                                <img src={user?.reloadUserInfo?.photoUrl} alt="User Profile" className="rounded-full" />
                             ) : (
-                                // Display default profile picture and "Sign In" link
-
                                 <IoPersonCircleOutline className="text-4xl" />
                             )}
 
