@@ -83,7 +83,8 @@ const Router = createBrowserRouter([
             ,
             {
                 path: '/addMeal',
-                element: <AddMeal />
+                element: <AddMeal />,
+                loader: () => fetch('http://localhost:5000/allMember'),
             }
             ,
             {
