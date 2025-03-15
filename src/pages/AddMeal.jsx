@@ -1,54 +1,3 @@
-
-// import { useLoaderData } from "react-router-dom";
-
-
-// const AddMeal = () => {
-//     const allMember = useLoaderData();
-//     console.log(allMember)
-//     return (
-//         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mb-14">
-//             <table className="table text-center">
-//                 {/* head */}
-//                 <thead>
-//                     <tr className="">
-//                         <th>Serial</th>
-//                         <th>Name</th>
-//                         <th>Address</th>
-//                         <th>Joining</th>
-//                         <th>Action</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {
-//                         allMember?.map((member, index) => (
-
-//                             <tr key={member._id}>
-//                                 <th>{index + 1}</th>
-//                                 <td>{member.name}</td>
-//                                 <td>{member.address}</td>
-//                                 <td><span className="text-[12px]">{member.joiningDate}</span></td>
-//                                 <td>
-//                                     <div className="flex items-center justify-center gap-2">
-//                                         <input className="pl-2 ml-2" type="checkbox" name="addMeal" id="" />
-//                                         <h3>Add Meal</h3>
-//                                     </div>
-//                                 </td>
-//                             </tr>
-//                         ))
-//                     }
-
-
-//                 </tbody>
-//             </table>
-//         </div>
-
-//     );
-// };
-
-// export default AddMeal;
-
-
-
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -81,7 +30,7 @@ const AddMeal = () => {
             name: member.name,
             address: member.address,
             joiningDate: member.joiningDate,
-            mealDate: new Date(),
+            mealDate: new Date().toISOString().split("T")[0],
         }))
 
         try {

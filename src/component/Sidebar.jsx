@@ -50,7 +50,7 @@ const Sidebar = () => {
                 <div className=" overflow-y-auto">
                     <ul className="space-y-2 font-medium">
                         <li className="flex p- items-center">
-                            <NavLink to='/dashboard' onClick={() => { (setOpen(false)) }} className={`flex p-2 items-center hover:bg-gray-100 w-full`}>
+                            <NavLink to='/home' onClick={() => { (setOpen(false)) }} className={`flex p-2 items-center hover:bg-gray-100 w-full`}>
                                 <RiHome4Fill className=" text-3xl text-gray-600" />
                                 <span className="ms-3">Home</span>
                             </NavLink>

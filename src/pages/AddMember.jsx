@@ -39,7 +39,7 @@ const AddMember = () => {
                                     {...register("name", { required: true })}
                                     name="name"
                                     type="text"
-                                    className="form-control w-full"
+                                    className="form-control w-full border-gray-300"
                                     id="basic-default-fullname"
                                     placeholder="Person Name"
 
@@ -56,7 +56,7 @@ const AddMember = () => {
                                     {...register("address", { required: true })}
                                     name="address"
                                     type="text"
-                                    className="form-control w-full"
+                                    className="form-control w-full border-gray-300"
                                     id="basic-default-fullname"
                                     placeholder="Address"
                                 />
@@ -71,7 +71,7 @@ const AddMember = () => {
                                     {...register("profession", { required: false })}
                                     name="profession"
                                     type="text"
-                                    className="form-control w-full"
+                                    className="form-control w-full border-gray-300"
                                     id="basic-default-fullname"
                                     placeholder="Profession"
                                 />
@@ -87,7 +87,7 @@ const AddMember = () => {
                                     {...register("joiningDate", { required: true })}
                                     name="joiningDate"
                                     type="date"
-                                    className="form-control w-full"
+                                    className="form-control w-full border-gray-300"
                                     id="basic-default-fullname"
                                     placeholder="Joining Date"
                                 />
@@ -102,7 +102,7 @@ const AddMember = () => {
                                     {...register("nid_no", { required: false })}
                                     name="nid_no"
                                     type="text"
-                                    className="form-control w-full "
+                                    className="form-control w-full border-gray-300 "
                                     id="basic-default-fullname"
                                     placeholder="NID No"
                                 />
@@ -110,7 +110,7 @@ const AddMember = () => {
                         </div>
                     </div>
                     <div>
-                        <input type="submit" className="btn btn-primary mt-4 w-full shadow-lg shadow-stone-500 border-gray-600 p-2" />
+                        <button type="submit" className="btn hover:bg-blue-500 bg-blue-600 border-none rounded-md  my-3 w-full shadow-lg shadow-stone-300 border-gray-300 p-2 text-white text-lg font-normal">Submit</button>
                     </div>
                 </form>
             </div>

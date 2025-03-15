@@ -98,7 +98,7 @@ const TopNavbar = () => {
 
 
 
-                    <span className="text-2xl font-semibold">Demo</span>
+                    <span className="text-2xl font-semibold"></span>
                 </div>
 
 
