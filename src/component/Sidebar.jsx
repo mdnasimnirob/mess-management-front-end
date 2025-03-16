@@ -40,13 +40,17 @@ const Sidebar = () => {
                 <h1 className="border">X</h1>
                 
             </div> */}
-            <div className={` ${open ? "w-16" : "w-56"} mt-[70px]  h-screen bg-gray-100 p-1  dark:bg-gray-800`}>
+            <div className={` ${open ? "w-16" : "w-56"} mt-[60px]  h-screen bg-gray-100 p-1  dark:bg-gray-800`}>
                 {/* <h5 id="drawer-navigation-label" className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5> */}
                 {/* <button onClick={handleMenu} type="button" className=" h-16 w-full bg-white text-black ">
 
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                     <span className="sr-only">Close menu</span>
                 </button> */}
+                {/* <div className="shadow-[rgba(0,0,15,0.5)_0px_2px_0px_0px] shadow-gray-200 pb-2 bg-gray-100 mt- ">
+                    <h5 id="drawer-navigation-label" className="text-md  text-transparent bg-gradient-to-r bg-clip-text  from-fuchsia-500 to-cyan-500 font-semibold text-gray-900  dark:text-gray-400 p-2 ">Mess Management</h5>
+                    <img className="w-9 ms-1.5  " src="/src/assets/logo (2).png" alt="" />
+                </div> */}
                 <div className=" overflow-y-auto">
                     <ul className="space-y-2 font-medium">
                         <li className="flex p- items-center">
@@ -73,7 +77,7 @@ const Sidebar = () => {
                         <li>
                             <NavLink to='/addDeposit' onClick={() => { (setOpen(false)) }} className="flex items-center pl-2 p-2  text-gray-900 rounded-lg  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <RiMoneyDollarBoxFill className=" text-3xl text-gray-600" />
-                                <span className="flex-1 ms-3 whitespace-nowrap dark:text-white">Add Money Deposit</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap dark:text-white">Add Money</span>
                             </NavLink>
                         </li>
                         <li>

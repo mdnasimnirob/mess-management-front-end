@@ -21,17 +21,18 @@ const AddMeal = () => {
     // Handle submitting selected members
     const handleSubmit = async () => {
         if (selectedMembers.length === 0) {
-            alert("No members selected");
+            toast.error("No members selected");
             return;
         }
 
         const dateMeal = selectedMembers.map(member => ({
-            _id: member._id,
+            member_id: member._id,
             name: member.name,
             address: member.address,
             joiningDate: member.joiningDate,
             mealDate: new Date().toISOString().split("T")[0],
         }))
+        console.log(dateMeal);
 
         try {
             const response = await fetch("http://localhost:5000/addMeal", {
@@ -54,6 +55,7 @@ const AddMeal = () => {
             toast.error("Something went wrong!");
         }
     };
+
 
     return (
         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mb-14">
@@ -89,7 +91,7 @@ const AddMeal = () => {
                 </tbody>
             </table>
 
-            <div className="text-end mr-9 text-white fixed bottom-6 right-0 ">
+            <div className="text-end mr-9 text-white fixed bottom-3 right-0 ">
                 <button
                     onClick={handleSubmit}
                     className="p-3 rounded-lg bg-blue-500 mt-4 mb-1"

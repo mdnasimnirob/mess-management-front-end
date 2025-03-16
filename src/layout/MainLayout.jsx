@@ -62,7 +62,7 @@ const MainLayout = () => {
 
                     <button
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        className={`lg:fixed hidden lg:block md:block sm:hidden z-40 -top-2 left-0 mt-4 bg-gray-200 p-2 rounded-md  text-blue-800 ${isSidebarOpen ? "lg:left-40 transition-all duration-500" : "lg:left-3 transition-all duration-500"}`}
+                        className={`lg:fixed hidden lg:block md:block sm:hidden z-40 -top-2 left-0 mt-4 bg-gray-200 p-2 rounded-md  text-blue-800 ${isSidebarOpen ? "lg:left-40 transition-all duration-500" : "lg:left-3 transition-all duration-500 "}`}
                     >
                         <RiMenu2Line className="text-xl" />
                     </button>
