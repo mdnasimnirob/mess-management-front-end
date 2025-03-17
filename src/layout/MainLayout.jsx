@@ -48,7 +48,7 @@ const MainLayout = () => {
 
             <Toaster position="top-center" />
 
-            <div className={`fixed  top-0 z-40 w-full bg-white lg:rounded-xl shadow-md transition-all duration-300  ml-0   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] lg:left-[224px] lg:transition-all lg:duration-500" : "lg:w-[calc(100%-72px)]  lg:left-[72px] transition-all duration-500"}`}>
+            <div className={`fixed  top-0 z-40 w-full bg-white lg:rounded-lg shadow-md transition-all duration-300  ml-0   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] lg:left-[224px] lg:transition-all lg:duration-500" : "lg:w-[calc(100%-72px)]  lg:left-[72px] transition-all duration-500"}`}>
                 <TopNavbar />
             </div>
 

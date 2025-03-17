@@ -114,7 +114,7 @@ const TopNavbar = () => {
                         <div className="w-10 rounded-full">
                             {loading ? <IoPersonCircleOutline className="text-4xl" /> : user?.reloadUserInfo.photoUrl ? (
                                 // Display user profile picture
-                                <img src={user?.reloadUserInfo?.photoUrl} alt="User Profile" className="rounded-full" />
+                                <img src={user?.reloadUserInfo?.photoUrl} alt="" className="rounded-full" />
                             ) : (
                                 <IoPersonCircleOutline className="text-4xl" />
                             )}
