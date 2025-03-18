@@ -3,7 +3,7 @@ import { BsPeopleFill, BsPersonFillAdd } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
 import { FaPersonBooth, FaShoppingCart } from "react-icons/fa";
 import { MdOutlineSoupKitchen } from "react-icons/md";
-import { RiHome4Fill, RiMoneyDollarBoxFill } from "react-icons/ri";
+import { RiDashboardHorizontalFill, RiHome4Fill, RiMoneyDollarBoxFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 import toast from "react-hot-toast";
@@ -53,6 +53,12 @@ const Sidebar = () => {
                 </div> */}
                 <div className=" overflow-y-auto">
                     <ul className="space-y-2 font-medium">
+                        <li className="flex p- items-center">
+                            <NavLink to='/dashboard' onClick={() => { (setOpen(false)) }} className={`flex p-2 items-center hover:bg-gray-100 w-full`}>
+                                <RiDashboardHorizontalFill className=" text-3xl text-gray-600" />
+                                <span className="ms-3">Dashboard</span>
+                            </NavLink>
+                        </li>
                         <li className="flex p- items-center">
                             <NavLink to='/home' onClick={() => { (setOpen(false)) }} className={`flex p-2 items-center hover:bg-gray-100 w-full`}>
                                 <RiHome4Fill className=" text-3xl text-gray-600" />

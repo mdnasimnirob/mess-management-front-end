@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 const Home = () => {
     const [meals, setMeals] = useState([]);
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedMeal, setSelectedMeal] = useState(null);
 
     const getCurrentMonth = () => {
         const today = new Date();
         const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
-        // const day = String(today.getDate()).padStart(2, "0");
+        const month = String(today.getMonth() + 1).padStart(2, "0");
         return `${year}-${month}`;
     };
 
@@ -22,15 +23,12 @@ const Home = () => {
             console.error("Error fetching meals:", error);
         }
     };
+    console.log(selectedMeal)
 
     useEffect(() => {
         fetchMeals();
         setSelectedMonth(getCurrentMonth());
-        // setSelectedDate(getCurrentMonth())
     }, []);
-
-    console.log(meals);
-
 
     // Handle date selection
     const handleDateChange = (event) => {
@@ -45,46 +43,32 @@ const Home = () => {
         setSelectedDate(""); // Reset selected date when month changes
     };
 
+    // Open modal with selected meal details
+    const handleMealDetails = (meal) => {
+        setSelectedMeal(meal);
+        setIsModalOpen(true);
+    };
 
-
-    console.log(getCurrentMonth)
-
-
-
-    // Filter meals by selected date
-    // const filteredMeals = selectedDate
-    //     ? meals.filter((meal) => {
-    //         const mealDate = new Date(meal._id);
-    //         const mealMonth = mealDate.getMonth() + 1; // Months are 0-indexed
-    //         const mealYear = mealDate.getFullYear();
-    //         const [selectedYear, selectedMonthValue] = selectedDate.split("-");
-    //         return (
-    //             mealMonth === parseInt(selectedMonthValue) &&
-    //             mealYear === parseInt(selectedYear)
-    //         );
-    //     })
-    //     : meals;
-
+    // Close modal
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedMeal(null);
+    };
 
     // Filter meals by selected month and date
     const filteredMeals = meals.filter((meal) => {
         const mealDate = new Date(meal._id);
-        const mealMonth = mealDate.getMonth() + 1; // Months are 0-indexed
+        const mealMonth = mealDate.getMonth() + 1;
         const mealYear = mealDate.getFullYear();
         const mealDay = mealDate.getDate();
 
-        // Filter by month
         if (selectedMonth) {
             const [selectedYear, selectedMonthValue] = selectedMonth.split("-");
-            if (
-                mealMonth !== parseInt(selectedMonthValue) ||
-                mealYear !== parseInt(selectedYear)
-            ) {
+            if (mealMonth !== parseInt(selectedMonthValue) || mealYear !== parseInt(selectedYear)) {
                 return false;
             }
         }
 
-        // Filter by date
         if (selectedDate) {
             const selectedDateObj = new Date(selectedDate);
             if (
@@ -99,18 +83,10 @@ const Home = () => {
         return true;
     });
 
-
-
-
-    console.log("Filtered Meals:", filteredMeals);
-
-
     return (
         <div className="p-4">
             <div className="flex justify-between gap-1 p-3">
-                {/* Month Picker */}
                 <div>
-                    {/* <label className="block mb-2 font-bold">Select Month:</label> */}
                     <input
                         type="month"
                         value={selectedMonth}
@@ -118,9 +94,7 @@ const Home = () => {
                         className="border px-2 py-1 rounded mb-4"
                     />
                 </div>
-                {/* Date Picker */}
                 <div>
-                    {/* <label className="block mb-2 font-bold">Select Date:</label> */}
                     <input
                         type="date"
                         value={selectedDate}
@@ -129,6 +103,7 @@ const Home = () => {
                     />
                 </div>
             </div>
+
             {!meals || meals.length === 0 ? (
                 <div>No meal data available</div>
             ) : (
@@ -142,18 +117,10 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody>
-
-
-                        {!filteredMeals || filteredMeals.length === 0 ? (
-                            <tr className="">
-                                <td colSpan="4" className=" text-center text-xl bg-gray-200 text-red-600 py-">
-                                    No meal data available
-                                </td>
-                            </tr>
-                        ) : (filteredMeals?.map((meal) => {
+                        {filteredMeals?.map((meal) => {
                             const totalCount = meal.meals.reduce((total, individualMeal) => {
-                                const count = Number(individualMeal.count);
-                                return total + (isNaN(count) ? 0 : count);
+                                const guestMeals = Number(individualMeal.guestMeals);
+                                return total + (isNaN(guestMeals) ? 0 : guestMeals);
                             }, 0);
 
                             return (
@@ -161,9 +128,17 @@ const Home = () => {
                                     <td>{meal._id}</td>
                                     <td>{meal.totalMeals}</td>
                                     <td>{totalCount}</td>
-                                    <td>
+                                    {/* <td>
                                         <button
                                             onClick={() => console.log(meal.meals)}
+                                            className="px-2 bg-blue-600 text-white rounded-sm"
+                                        >
+                                            Details
+                                        </button>
+                                    </td> */}
+                                    <td>
+                                        <button
+                                            onClick={() => handleMealDetails(meal)}
                                             className="px-2 bg-blue-600 text-white rounded-sm"
                                         >
                                             Details
@@ -171,9 +146,61 @@ const Home = () => {
                                     </td>
                                 </tr>
                             );
-                        }))}
+                        })}
                     </tbody>
                 </table>
+            )}
+
+            {/* Modal for Meal Details */}
+            {isModalOpen && (
+                <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50">
+                    <div className="bg-white p-6 rounded-lg lg:w-1/3 w-full relative">
+                        <div>
+                            <button
+                                className="absolute -top-3 -right-3 bg-gray-200 rounded-sm text-black shadow-md hover:bg-white hover:translate-y-0.5 w-6 h-6 flex items-center justify-center"
+                                onClick={() => closeModal(null)}
+                            >
+                                x
+                            </button>
+                        </div>
+                        <div className="flex justify-between">
+                            <div>
+                                <h2 className="text-xl font-bold mb-3">Meal Details</h2>
+                                <p><strong>Total Meals:</strong> {selectedMeal.totalMeals}</p>
+                            </div>
+                            <div>
+                                <p><strong>Date:</strong> {selectedMeal._id}</p>
+
+                            </div>
+                        </div>
+                        <table className="w-full mt-4 text-center ">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Joining Date</th>
+                                    <th>Guest Meals</th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-start pl-5">
+                                {selectedMeal.meals.map((individualMeal) => (
+                                    <tr key={individualMeal._id}>
+                                        <td className="text-start pl-5">{individualMeal.memberName}</td>
+                                        <td className="text-start pl-5">{individualMeal.memberAddress}</td>
+                                        <td className="text-start pl-5">{individualMeal.memberJoiningDate}</td>
+                                        <td className="text-start pl-5">{individualMeal.guestMeals}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <button
+                            onClick={closeModal}
+                            className="mt-4 px-4 py-2 bg-red-600 text-white rounded"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );
@@ -183,44 +210,47 @@ export default Home;
 
 
 
-{/* {meals.map((meal) => (
 
-                            <>
-                                <tr key={meal._id}>
-                                    <td>{meal._id}</td>
-                                    <td>{meal.totalMeals}</td>
-                                    <td>{meal.meals.reduce((total, individualMeal) => total + individualMeal.count, 1)}</td>
-                                    <td>
-                                        <button
-                                            onClick={() => console.log(meal.meals)}
-                                            className="px-2 bg-blue-600 text-white rounded-sm"
-                                        >
-                                            Details
-                                        </button>
-                                    </td>
-                                </tr> */}
-{/* Nested table for individual meals */ }
-{/* <tr>
-                                    <td colSpan={4}>
-                                        <table className="w-full">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Count</th>
-                                                    <th>Address</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {meal.meals.map((individualMeal) => (
-                                                    <tr key={individualMeal._id}>
-                                                        <td>{individualMeal.name}</td>
-                                                        <td>{individualMeal.count}</td>
-                                                        <td>{individualMeal.address}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr> */}
-{/* </>
-                        ))} */}
+// {
+//     meals.map((meal) => (
+
+//         <>
+//             <tr key={meal._id}>
+//                 <td>{meal._id}</td>
+//                 <td>{meal.totalMeals}</td>
+//                 <td>{meal.meals.reduce((total, individualMeal) => total + individualMeal.count, 1)}</td>
+//                 <td>
+//                     <button
+//                         onClick={() => console.log(meal.meals)}
+//                         className="px-2 bg-blue-600 text-white rounded-sm"
+//                     >
+//                         Details
+//                     </button>
+//                 </td>
+//             </tr>
+//             {/* Nested table for individual meals */}
+//             <tr>
+//                 <td colSpan={4}>
+//                     <table className="w-full">
+//                         <thead>
+//                             <tr>
+//                                 <th>Name</th>
+//                                 <th>Count</th>
+//                                 <th>Address</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>
+//                             {meal.meals.map((individualMeal) => (
+//                                 <tr key={individualMeal._id}>
+//                                     <td>{individualMeal.name}</td>
+//                                     <td>{individualMeal.count}</td>
+//                                     <td>{individualMeal.address}</td>
+//                                 </tr>
+//                             ))}
+//                         </tbody>
+//                     </table>
+//                 </td>
+//             </tr>
+//         </>
+//     ))
+// } 

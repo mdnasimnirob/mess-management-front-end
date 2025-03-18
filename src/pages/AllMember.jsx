@@ -215,11 +215,11 @@ const AllMember = () => {
             )} */}
 
             {selectedMember && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+                <div className="fixed z-40 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg relative"> {/* Add relative here */}
                         {/* Close button positioned absolutely in the top-right corner */}
                         <button
-                            className="absolute -top-3 -right-3 bg-gray-200 rounded-sm text-black shadow-md hover:bg-gray-300 w-6 h-6 flex items-center justify-center"
+                            className="absolute -top-3 -right-3 bg-gray-200 rounded-sm text-black shadow-md hover:bg-white hover:translate-y-0.5 w-6 h-6 flex items-center justify-center"
                             onClick={() => setSelectedMember(null)}
                         >
                             x
@@ -238,7 +238,7 @@ const AllMember = () => {
                             value={selectedMember.address}
                             onChange={(e) => setSelectedMember({ ...selectedMember, address: e.target.value })}
                         />
-                        <div className="flex justify-between gap-4 mt-3">
+                        <div className="flex justify-end gap-4 mt-3">
                             <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={handleUpdate}>
                                 Save
                             </button>
