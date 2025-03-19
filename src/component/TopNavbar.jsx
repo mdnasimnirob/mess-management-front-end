@@ -3,9 +3,9 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { BsPeopleFill, BsPersonFillAdd } from "react-icons/bs";
 import { FaPersonBooth, FaShoppingCart } from "react-icons/fa";
 import { IoCloseSharp, IoPersonCircleOutline } from "react-icons/io5";
-import { MdOutlineSoupKitchen } from "react-icons/md";
+import { MdOutlineFindReplace, MdOutlineSoupKitchen } from "react-icons/md";
 
-import { RiHome4Fill, RiMenu2Line, RiMoneyDollarBoxFill } from "react-icons/ri";
+import { RiFindReplaceLine, RiHome4Fill, RiMenu2Line, RiMoneyDollarBoxFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 import { CiLogout } from "react-icons/ci";
@@ -58,7 +58,7 @@ const TopNavbar = () => {
     return (
 
 
-        <nav className=" rounded-xl  bg-white border-gray-200 dark:bg-gray-900">
+        <nav className=" rounded-lg  bg-gray-50 border-gray-200 dark:bg-gray-800">
             {/* <div className="  lg:rounded-2xl  w-full h-13 bg-white shadow-sm  shadow-gray-200 navbar p-4">
                 <div className="navbar-start flex items-center space-x-3 rtl:space-x-reverse">
                     <button onClick={handleToggleMenu} className=" bg-gray-100 p-2 px-3 visible lg:hidden md:hidden  ">
@@ -98,7 +98,11 @@ const TopNavbar = () => {
 
 
 
-                    <span className="text-2xl font-semibold"></span>
+                    {/* <span className="text-2xl font-semibold"><h5 id="drawer-navigation-label" className="text-xl text-transparent bg-gradient-to-r bg-clip-text  from-fuchsia-500 to-cyan-500 font-semibold text-gray-900  dark:text-gray-400 p-2">Mess Management</h5></span> */}
+                    <div className="relative">
+                        <input className=" lg:ml-7 px-4  pr-9 py-[6px] focus:border-none focus: lg:w-[320px] w-40 rounded-full border-[#eaedf1] bg-[#f7f8f9]" type="search" placeholder="Search for results.." />
+                        <button className="absolute bottom-[9px] right-4  z-30 text-gray-500"><RiFindReplaceLine /></button>
+                    </div>
                 </div>
 
 

@@ -103,7 +103,7 @@ const AddMeal = () => {
         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 lg:mb-14 mb-32 ">
             <table className="table text-center">
                 <thead>
-                    <tr>
+                    <tr className="text-black">
                         <th>Serial</th>
                         <th>Name</th>
                         <th>Address</th>

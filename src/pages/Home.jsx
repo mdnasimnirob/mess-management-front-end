@@ -84,51 +84,52 @@ const Home = () => {
     });
 
     return (
-        <div className="p-4">
-            <div className="flex justify-between gap-1 p-3">
-                <div>
-                    <input
-                        type="month"
-                        value={selectedMonth}
-                        onChange={handleMonthChange}
-                        className="border px-2 py-1 rounded mb-4"
-                    />
+        <div className="bg-gray-100 p-4">
+            <div className="p-4 bg-white shadow-md rounded-lg">
+                <div className="flex justify-between gap-1 p-3 ">
+                    <div>
+                        <input
+                            type="month"
+                            value={selectedMonth}
+                            onChange={handleMonthChange}
+                            className="border px-2 py-1 rounded mb-4"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="date"
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            className="border px-2 py-1 rounded mb-4"
+                        />
+                    </div>
                 </div>
-                <div>
-                    <input
-                        type="date"
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        className="border px-2 py-1 rounded mb-4"
-                    />
-                </div>
-            </div>
 
-            {!meals || meals.length === 0 ? (
-                <div>No meal data available</div>
-            ) : (
-                <table className="table text-center">
-                    <thead>
-                        <tr className="text-black">
-                            <th>Date</th>
-                            <th>Total Meals</th>
-                            <th>Guests</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredMeals?.map((meal) => {
-                            const totalCount = meal.meals.reduce((total, individualMeal) => {
-                                const guestMeals = Number(individualMeal.guestMeals);
-                                return total + (isNaN(guestMeals) ? 0 : guestMeals);
-                            }, 0);
+                {!meals || meals.length === 0 ? (
+                    <div>No meal data available</div>
+                ) : (
+                    <table className="table text-center">
+                        <thead>
+                            <tr className="text-black">
+                                <th>Date</th>
+                                <th>Total Meals</th>
+                                <th>Guests</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredMeals?.map((meal) => {
+                                const totalCount = meal.meals.reduce((total, individualMeal) => {
+                                    const guestMeals = Number(individualMeal.guestMeals);
+                                    return total + (isNaN(guestMeals) ? 0 : guestMeals);
+                                }, 0);
 
-                            return (
-                                <tr key={meal._id}>
-                                    <td>{meal._id}</td>
-                                    <td>{meal.totalMeals}</td>
-                                    <td>{totalCount}</td>
-                                    {/* <td>
+                                return (
+                                    <tr key={meal._id}>
+                                        <td>{meal._id}</td>
+                                        <td>{meal.totalMeals}</td>
+                                        <td>{totalCount}</td>
+                                        {/* <td>
                                         <button
                                             onClick={() => console.log(meal.meals)}
                                             className="px-2 bg-blue-600 text-white rounded-sm"
@@ -136,72 +137,73 @@ const Home = () => {
                                             Details
                                         </button>
                                     </td> */}
-                                    <td>
-                                        <button
-                                            onClick={() => handleMealDetails(meal)}
-                                            className="px-2 bg-blue-600 text-white rounded-sm"
-                                        >
-                                            Details
-                                        </button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            )}
+                                        <td>
+                                            <button
+                                                onClick={() => handleMealDetails(meal)}
+                                                className="px-2 bg-blue-600 text-white rounded-sm"
+                                            >
+                                                Details
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                )}
 
-            {/* Modal for Meal Details */}
-            {isModalOpen && (
-                <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-lg lg:w-1/3 w-full relative">
-                        <div>
+                {/* Modal for Meal Details */}
+                {isModalOpen && (
+                    <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50">
+                        <div className="bg-white p-6 rounded-lg lg:w-1/3 w-full relative">
+                            <div>
+                                <button
+                                    className="absolute -top-3 -right-3 bg-gray-200 rounded-sm text-black shadow-md hover:bg-white hover:translate-y-0.5 w-6 h-6 flex items-center justify-center"
+                                    onClick={() => closeModal(null)}
+                                >
+                                    x
+                                </button>
+                            </div>
+                            <div className="flex justify-between">
+                                <div>
+                                    <h2 className="text-xl font-bold mb-3">Meal Details</h2>
+                                    <p><strong>Total Meals:</strong> {selectedMeal.totalMeals}</p>
+                                </div>
+                                <div>
+                                    <p><strong>Date:</strong> {selectedMeal._id}</p>
+
+                                </div>
+                            </div>
+                            <table className="w-full mt-4 text-center ">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Joining Date</th>
+                                        <th>Guest Meals</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-start pl-5">
+                                    {selectedMeal.meals.map((individualMeal) => (
+                                        <tr key={individualMeal._id}>
+                                            <td className="text-start pl-4">{individualMeal.memberName}</td>
+                                            <td className="text-start pl-7">{individualMeal.memberAddress}</td>
+                                            <td className="text-start pl-3">{individualMeal.memberJoiningDate}</td>
+                                            <td className="text-start pl-9">{individualMeal.guestMeals}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                             <button
-                                className="absolute -top-3 -right-3 bg-gray-200 rounded-sm text-black shadow-md hover:bg-white hover:translate-y-0.5 w-6 h-6 flex items-center justify-center"
-                                onClick={() => closeModal(null)}
+                                onClick={closeModal}
+                                className="mt-4 px-4 py-2 bg-red-600 text-white rounded"
                             >
-                                x
+                                Close
                             </button>
                         </div>
-                        <div className="flex justify-between">
-                            <div>
-                                <h2 className="text-xl font-bold mb-3">Meal Details</h2>
-                                <p><strong>Total Meals:</strong> {selectedMeal.totalMeals}</p>
-                            </div>
-                            <div>
-                                <p><strong>Date:</strong> {selectedMeal._id}</p>
-
-                            </div>
-                        </div>
-                        <table className="w-full mt-4 text-center ">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Joining Date</th>
-                                    <th>Guest Meals</th>
-                                </tr>
-                            </thead>
-                            <tbody className="text-start pl-5">
-                                {selectedMeal.meals.map((individualMeal) => (
-                                    <tr key={individualMeal._id}>
-                                        <td className="text-start pl-5">{individualMeal.memberName}</td>
-                                        <td className="text-start pl-5">{individualMeal.memberAddress}</td>
-                                        <td className="text-start pl-5">{individualMeal.memberJoiningDate}</td>
-                                        <td className="text-start pl-5">{individualMeal.guestMeals}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <button
-                            onClick={closeModal}
-                            className="mt-4 px-4 py-2 bg-red-600 text-white rounded"
-                        >
-                            Close
-                        </button>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

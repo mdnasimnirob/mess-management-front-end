@@ -40,7 +40,7 @@ const Sidebar = () => {
                 <h1 className="border">X</h1>
                 
             </div> */}
-            <div className={` ${open ? "w-16" : "w-56"} mt-[60px]  h-screen bg-gray-100 p-1  dark:bg-gray-800`}>
+            <div className={` ${open ? "w-16" : "w-56"} mt-[2px]  h-screen bg-gray-100 p-1  dark:bg-gray-800`}>
                 {/* <h5 id="drawer-navigation-label" className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5> */}
                 {/* <button onClick={handleMenu} type="button" className=" h-16 w-full bg-white text-black ">
 
@@ -50,6 +50,10 @@ const Sidebar = () => {
                 {/* <div className="shadow-[rgba(0,0,15,0.5)_0px_2px_0px_0px] shadow-gray-200 pb-2 bg-gray-100 mt- ">
                     <h5 id="drawer-navigation-label" className="text-md  text-transparent bg-gradient-to-r bg-clip-text  from-fuchsia-500 to-cyan-500 font-semibold text-gray-900  dark:text-gray-400 p-2 ">Mess Management</h5>
                     <img className="w-9 ms-1.5  " src="/src/assets/logo (2).png" alt="" />
+                </div> */}
+
+                {/* <div>
+                    <h5 id="drawer-navigation-label" className="text-xl text-transparent bg-gradient-to-r bg-clip-text  from-fuchsia-500 to-cyan-500 font-semibold text-gray-900  dark:text-gray-400 p-2">Mess Management</h5>
                 </div> */}
                 <div className=" overflow-y-auto">
                     <ul className="space-y-2 font-medium">
@@ -73,13 +77,7 @@ const Sidebar = () => {
                     
                                                 </div>
                                             </li> */}
-                        <li>
-                            <NavLink to='/addMember' onClick={() => { (setOpen(false)) }} className="flex items-center pl-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <BsPersonFillAdd className=" text-3xl text-gray-600" />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Add Mess Member</span>
-                                {/* <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span> */}
-                            </NavLink>
-                        </li>
+
                         <li>
                             <NavLink to='/addDeposit' onClick={() => { (setOpen(false)) }} className="flex items-center pl-2 p-2  text-gray-900 rounded-lg  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <RiMoneyDollarBoxFill className=" text-3xl text-gray-600" />
@@ -104,6 +102,13 @@ const Sidebar = () => {
                             <NavLink onClick={() => { (setOpen(false)) }} to='/addCost' className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FaShoppingCart className=" text-3xl text-gray-600" />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Add Cost</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/addMember' onClick={() => { (setOpen(false)) }} className="flex items-center pl-2 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <BsPersonFillAdd className=" text-3xl text-gray-600" />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Add Mess Member</span>
+                                {/* <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span> */}
                             </NavLink>
                         </li>
                         <li>
