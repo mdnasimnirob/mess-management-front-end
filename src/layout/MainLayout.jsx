@@ -66,7 +66,9 @@ const MainLayout = () => {
 
 
                 <div className={`lg:fixed hidden bg-gray-100 lg:block md:block sm:hidden left-0 top-0 h-screen px-1 z-40 
-    ${isSidebarOpen ? "w-52 transition-all duration-500 overflow-hidden" : "w-[57px] transition-all duration-500 overflow-hidden"}`}>
+                     ${isSidebarOpen ?
+                        "w-52 transition-all duration-500 overflow-hidden" :
+                        "w-[57px] transition-all duration-500 overflow-hidden"}`}>
 
                     <div className={`${isSidebarOpen ? 'shadow-[rgba(0,0,15,0.5)_0px_2px_0px_0px] shadow-gray-200 pb-' : 'pb-2'} bg-gray-100 mt-3`}>
 
@@ -77,9 +79,10 @@ const MainLayout = () => {
 
                         {/* Text */}
                         <h5 id="drawer-navigation-label"
-                            className={` text-xl text-transparent bg-gradient-to-r bg-clip-text from-fuchsia-500 to-cyan-500 font-semibold text-gray-900 dark:text-gray-400 p-2
-            transition-opacity duration-500
-            ${isSidebarOpen ? 'opacity-100 w-[250px] ml-1  visible' : 'hidden duration-1000 opacity-0 -w-9'}`}>
+                            className={` text-xl text-transparent bg-gradient-to-r bg-clip-text from-fuchsia-500 to-cyan-500 font-semibold text-gray-900 dark:text-gray-400 p-2 transition-opacity duration-500
+                         ${isSidebarOpen ?
+                                    'opacity-100 w-[250px] ml-1  visible' :
+                                    'hidden duration-1000 opacity-0 -w-9'}`}>
                             Mess Management
                         </h5>
                     </div>
@@ -98,7 +101,7 @@ const MainLayout = () => {
 
 
 
-                <div className={`lg:pt-[72px] pt-20 w-full md:pt-20   ${isSidebarOpen ? "lg:ml-56 lg:pr-2 transition-all duration-500 w-[1127px] " : "w-full lg:ml-16 lg:pl-2 lg:pr- transition-all duration-500"}`}>
+                <div className={`lg:pt-[72px] pt-20 w-full md:pt-20   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] lg:ml-56 lg:pr- transition-all duration-500  " : "lg:w-[calc(100%-72px)] w-full lg:ml-16 lg:pl-2 lg:pr- transition-all duration-500"}`}>
 
                     <button
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}

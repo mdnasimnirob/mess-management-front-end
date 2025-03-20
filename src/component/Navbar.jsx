@@ -29,10 +29,14 @@ const Navbar = () => {
                     Dashboard
                     <div className="tooltip-arrow" data-popper-arrow></div>
                 </div>
-                <NavLink to='/home' data-tooltip-target="tooltip-wallet" type="button" className={({ isActive }) =>
-                    `border-none rounded-none btn btn-lg inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ${isActive ? "text-blue-600" : "text-gray-900"
-                    }`
-                }>
+                <NavLink
+                    to='/home'
+                    data-tooltip-target="tooltip-wallet"
+                    type="button"
+                    className={({ isActive }) =>
+                        `border-none rounded-none btn btn-lg inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ${isActive ? "text-blue-600" : "text-gray-900"
+                        }`
+                    }>
                     <RiHome4Fill className="text-2xl " />
                     <span className="sr-only">Home</span>
                 </NavLink>

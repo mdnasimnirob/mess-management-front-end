@@ -5,25 +5,26 @@ import toast from "react-hot-toast";
 const AddMeal = () => {
     const allMember = useLoaderData(); // Load all members
     const [selectedMeals, setSelectedMeals] = useState({});
-    const [existingMeals, setExistingMeals] = useState([]);
+    // const [existingMeals, setExistingMeals] = useState([]);
     const navigate = useNavigate();
 
     // Fetch today's meals to prevent duplicate entries
-    useEffect(() => {
-        const fetchExistingMeals = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/meals/today");
-                const data = await response.json();
-                setExistingMeals(data); // Store members who already added meals
-            } catch (error) {
-                console.error("Error fetching today's meals:", error);
-            }
-        };
-        fetchExistingMeals();
-    }, []);
+    // useEffect(() => {
+    //     const fetchExistingMeals = async () => {
+    //         try {
+    //             const response = await fetch("http://localhost:5000/meals/today");
+    //             const data = await response.json();
+    //             setExistingMeals(data); // Store members who already added meals
+    //         } catch (error) {
+    //             console.error("Error fetching today's meals:", error);
+    //         }
+    //     };
+    //     fetchExistingMeals();
+    // }, []);
+    // console.log(existingMeals)
 
     // Check if a member has already added a meal today
-    const hasMealToday = (memberId) => existingMeals.some(m => m.member_id === memberId);
+    const hasMealToday = (memberId) => (m => m.member_id === memberId);
 
     // Handle selection & guest count
     const handleSelect = (memberId) => {

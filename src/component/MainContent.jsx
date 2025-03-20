@@ -1,11 +1,67 @@
+import { useEffect, useState } from "react";
 import Chart from "../chart/Chart";
 
 const MainContent = () => {
+    const [monthlyMeals, setMonthlyMeals] = useState(null);
+    const [weeklyMeals, setWeeklyMeals] = useState(null);
+    const [todayMeals, setTodayMeals] = useState(null);
+
+    const [todayGuestMeals, setTodayGuestMeals] = useState(null);
+
+
+    useEffect(() => {
+        fetch('http://localhost:5000/meals/monthly')
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data)
+                setMonthlyMeals(data)
+            }
+            )
+            .catch(error => console.error(error)
+            );
+
+        fetch('http://localhost:5000/meals/weekly')
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data)
+                setWeeklyMeals(data)
+            }
+            )
+            .catch(error => console.error(error)
+            );
+
+        fetch('http://localhost:5000/meals/today')
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data)
+                setTodayMeals(data)
+            }
+            )
+            .catch(error => console.error(error)
+            );
+
+
+        fetch('http://localhost:5000/guest-meals/today')
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data)
+                setTodayGuestMeals(data)
+            }
+            )
+            .catch(error => console.error(error)
+            );
+
+
+
+    }, [])
+
+    console.log(monthlyMeals, weeklyMeals, todayMeals, todayGuestMeals)
+
     return (
 
 
         <div className="min-h-screen bg-gray-100 p-4">
-            <div className="max-w-7xl mx-auto space-y-6">
+            <div className=" mx-auto space-y-6">
                 {/* Header */}
                 {/* <div className="bg-blue-600 text-white p-4 rounded-lg shadow-lg">
                     <h1 className="text-3xl font-semibold">Mess Management Dashboard</h1>
@@ -14,17 +70,26 @@ const MainContent = () => {
                 {/* Overview Section */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-white p-4 rounded-lg shadow-md">
-                        <h2 className="text-xl font-semibold">Total Meals Served</h2>
-                        <p className="text-2xl">250</p>
+                        <h2 className="text-xl font-semibold">Total Meals Served Monthly</h2>
+                        <p className="text-2xl text-blue-600">{monthlyMeals?.meals?.length}</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-md">
-                        <h2 className="text-xl font-semibold">Revenue</h2>
-                        <p className="text-2xl">$1,500</p>
+                        <h2 className="text-xl font-semibold">Today Meals</h2>
+                        <p className="text-2xl text-blue-600">{
+                            todayMeals?.meals?.length === 0 ? <><span className="text-[16px] text-red-600 bg-yellow-100 px-3 py-1 rounded-md">No Meal Today</span></> : todayMeals?.meals?.length}</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-md">
-                        <h2 className="text-xl font-semibold">Pending </h2>
-                        <p className="text-2xl">5</p>
+                        <div className="flex text-center items-center gap-3">
+                            <h2 className="text-xl font-semibold">Today guest Meals:</h2>
+                            <p className="text-2xl text-center text-blue-600">{todayGuestMeals?.totalGuestMeals}</p>
+                        </div>
+                        <div className="flex text-center items-center gap-3">
+                            <h2 className="text-xl font-semibold">Monthly guest Meals:</h2>
+                            <p className="text-xl text-center text-blue-600">{todayGuestMeals?.totalGuestMeals}</p>
+                        </div>
+
                     </div>
+
                 </div>
 
                 {/* Add the Chart Component */}
@@ -40,9 +105,9 @@ const MainContent = () => {
                     </ul>
                 </div>
 
-                {/* Orders Section */}
+
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                    <h2 className="text-2xl font-semibold mb-4">Current Orders</h2>
+                    <h2 className="text-2xl font-semibold mb-4">Current Today Meals </h2>
                     <table className="min-w-full border-collapse">
                         <thead>
                             <tr className="border-b">
@@ -80,30 +145,6 @@ const MainContent = () => {
             </div>
         </div>
 
-
-        // <div className="bg-gray-50 p-2">
-        //     <h3>Dashboard</h3>
-        //     <div className="flex justify-between border py-2">
-        //         <div>
-        //             <div className="border-2 p-2 bg-gray-200">
-        //                 <h1>amount</h1>
-        //                 <p></p>
-        //                 <p></p>
-        //             </div>
-        //         </div>
-        //         <div>
-        //             <div>
-        //                 <h1>box 1</h1>
-        //             </div>
-        //         </div>
-        //         <div>
-        //             <h1>box 1</h1>
-        //         </div>
-        //         <div>
-        //             <h1>box 1</h1>
-        //         </div>
-        //     </div>
-        // </div>
     );
 };
 

@@ -120,7 +120,7 @@ const TopNavbar = () => {
                                 // Display user profile picture
                                 <img src={user?.reloadUserInfo?.photoUrl} alt="" className="rounded-full" />
                             ) : (
-                                <IoPersonCircleOutline className="text-4xl" />
+                                <IoPersonCircleOutline className="text-4xl w-[40px]" />
                             )}
 
 

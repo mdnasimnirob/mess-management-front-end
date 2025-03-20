@@ -37,23 +37,6 @@ const AllMember = () => {
         }
     };
 
-    // const handleDelete = _id => {
-    //     console.log(_id);
-    //     fetch(`http://localhost:5000/memberDelete/${_id}`, {
-    //         method: 'delete'
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-    //             if (data.deletedCount > 0) {
-    //                 toast.success('Delete Successfully')
-    //                 const remainingMember = allMember.filter(member => member._id !== _id)
-    //                 setAllMember(remainingMember)
-    //             }
-
-    //         })
-    // }
-
     const handleDelete = (_id) => {
         // Show confirmation dialog
         Swal.fire({
@@ -141,78 +124,6 @@ const AllMember = () => {
                     </tbody>
                 </table>
             </div>
-
-            {/* Edit Modal */}
-            {/* {selectedMember && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <div className="bg-white rounded-lg shadow-lg flex justify-between ">
-                            <h2 className="text-xl font-semibold mb-4">Edit Member</h2>
-                            <button className="bg-gray-200 rounded-sm text-black shadow-white hover:text-[15px] shadow-md  px-2 mb-4 fixed top-[185px] right-[455px] " onClick={() => setSelectedMember(null)}>
-                                x
-                            </button>
-                        </div>
-
-                        <input
-                            type="text"
-                            className="border p-2 w-full mb-2"
-                            value={selectedMember.name}
-                            onChange={(e) => setSelectedMember({ ...selectedMember, name: e.target.value })}
-                        />
-                        <input
-                            type="text"
-                            className="border p-2 w-full mb-2"
-                            value={selectedMember.address}
-                            onChange={(e) => setSelectedMember({ ...selectedMember, address: e.target.value })}
-                        />
-                        <div className="flex gap-4">
-                            <button className="bg-blue-500 text-white px-4 py-2" onClick={handleUpdate}>
-                                Save
-                            </button>
-                            <button className="bg-gray-400 text-white px-4 py-2" onClick={() => setSelectedMember(null)}>
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )} */}
-
-            {/* {selectedMember && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg relative">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-semibold">Edit Member</h2>
-                            <button
-                                className="bg-gray-200 rounded-sm text-black shadow-md hover:bg-gray-300 px-2"
-                                onClick={() => setSelectedMember(null)}
-                            >
-                                x
-                            </button>
-                        </div>
-
-                        <input
-                            type="text"
-                            className="border p-2 w-full mb-2"
-                            value={selectedMember.name}
-                            onChange={(e) => setSelectedMember({ ...selectedMember, name: e.target.value })}
-                        />
-                        <input
-                            type="text"
-                            className="border p-2 w-full mb-2"
-                            value={selectedMember.address}
-                            onChange={(e) => setSelectedMember({ ...selectedMember, address: e.target.value })}
-                        />
-                        <div className="flex gap-4">
-                            <button className="bg-blue-500 text-white px-4 py-2" onClick={handleUpdate}>
-                                Save
-                            </button>
-                            <button className="bg-gray-400 text-white px-4 py-2" onClick={() => setSelectedMember(null)}>
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )} */}
 
             {selectedMember && (
                 <div className="fixed z-40 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
