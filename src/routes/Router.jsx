@@ -15,6 +15,7 @@ import AddMeal from "../pages/AddMeal";
 import AddCost from "../pages/AddCost";
 import AllMember from "../pages/AllMember";
 import ChangeManager from "../pages/ChangeManager";
+import Error from "../pages/Error";
 
 
 
@@ -23,6 +24,7 @@ const Router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
+        errorElement: <Error />,
         children: [
             {
                 path: '/',
@@ -39,7 +41,7 @@ const Router = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/meals')
+                // loader: () => fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/meals')
             }
             ,
             {
@@ -85,7 +87,7 @@ const Router = createBrowserRouter([
             {
                 path: '/addMeal',
                 element: <AddMeal />,
-                loader: () => fetch('http://localhost:5000/allMember'),
+                // loader: () => fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/allMember'),
             }
             ,
             {
@@ -96,7 +98,7 @@ const Router = createBrowserRouter([
             {
                 path: '/allMember',
                 element: <AllMember />,
-                loader: () => fetch('http://localhost:5000/allMember'),
+                // loader: () => fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/allMember'),
             }
             ,
             {

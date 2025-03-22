@@ -2,13 +2,27 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllMember = () => {
-    const loadedMember = useLoaderData();
-    const [allMember, setAllMember] = useState(loadedMember)
+    // const loadedMember = useLoaderData();
+    const [allMember, setAllMember] = useState();
     const [selectedMember, setSelectedMember] = useState(null);
+
+    useEffect(() => {
+        const fetchAllMembers = async () => {
+            try {
+                const response = await fetch("https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/allMember",);
+                const data = await response.json();
+                setAllMember(data);
+            } catch (error) {
+                console.error("Error fetching Member:", error);
+            }
+        };
+        fetchAllMembers();
+    }, []);
+    console.log(allMember)
 
     const handleEdit = (member) => {
         setSelectedMember({ ...member }); // Ensure a copy of the object is set
@@ -17,7 +31,7 @@ const AllMember = () => {
     const handleUpdate = async () => {
         if (!selectedMember) return;
 
-        const res = await fetch(`http://localhost:5000/memberUpdate/${selectedMember._id}`, {
+        const res = await fetch(`https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/memberUpdate/${selectedMember._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(selectedMember),
@@ -50,7 +64,7 @@ const AllMember = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // If user confirms, proceed with deletion
-                fetch(`http://localhost:5000/memberDelete/${_id}`, {
+                fetch(`https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/memberDelete/${_id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())

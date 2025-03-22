@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { RiMenu2Line } from "react-icons/ri";
 import { Toaster } from "react-hot-toast";
 import { AuthContexts } from "../providers/AuthProviders";
+import logo from '../../public/logo.png'
 
 
 
@@ -75,7 +76,7 @@ const MainLayout = () => {
                         {/* Logo */}
                         <img
                             // onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                            className="w-10 ms-2 " src="/src/assets/logo (2).png" alt="Logo" />
+                            className="w-10 ms-2 " src={logo} alt="Logo" />
 
                         {/* Text */}
                         <h5 id="drawer-navigation-label"

@@ -10,7 +10,7 @@ const MainContent = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/meals/monthly')
+        fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/meals/monthly')
             .then(res => res.json())
             .then((data) => {
                 // console.log(data)
@@ -20,7 +20,7 @@ const MainContent = () => {
             .catch(error => console.error(error)
             );
 
-        fetch('http://localhost:5000/meals/weekly')
+        fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/meals/weekly')
             .then(res => res.json())
             .then((data) => {
                 // console.log(data)
@@ -30,7 +30,7 @@ const MainContent = () => {
             .catch(error => console.error(error)
             );
 
-        fetch('http://localhost:5000/meals/today')
+        fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/meals/today')
             .then(res => res.json())
             .then((data) => {
                 // console.log(data)
@@ -41,7 +41,7 @@ const MainContent = () => {
             );
 
 
-        fetch('http://localhost:5000/guest-meals/today')
+        fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/guest-meals/today')
             .then(res => res.json())
             .then((data) => {
                 // console.log(data)

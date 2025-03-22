@@ -5,7 +5,7 @@ const AddMember = () => {
 
     const onSubmit = (data) => {
         console.log(data);
-        fetch('http://localhost:5000/memberAdd', {
+        fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/memberAdd', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 import { CiLogout } from "react-icons/ci";
 import toast from "react-hot-toast";
-
+import logo from '../../public/logo.png';
 
 
 const TopNavbar = () => {
@@ -135,7 +135,7 @@ const TopNavbar = () => {
 
             <div ref={menuRef} className={`fixed top-0 left-0 z-40 w-[250px] h-screen p-4 overflow-y-auto transition-transform ${open ? 'translate-x-0' : '-translate-x-80 '} bg-gray-100 dark:bg-gray-800`}>
                 <div className="shadow-[rgba(0,0,15,0.5)_0px_2px_0px_0px] shadow-gray-200 bg-gray-100">
-                    <img className="w-12 ms-2" src="/src/assets/logo (2).png" alt="" />
+                    <img className="w-12 ms-2" src={logo} alt="" />
                     <h5 id="drawer-navigation-label" className="text-xl text-transparent bg-gradient-to-r bg-clip-text  from-fuchsia-500 to-cyan-500 font-semibold text-gray-900  dark:text-gray-400 p-2">Mess Management</h5>
                 </div>
                 <button onClick={handleToggleMenu} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">

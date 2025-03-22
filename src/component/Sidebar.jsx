@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContexts } from "../providers/AuthProviders";
 import toast from "react-hot-toast";
 import { BiLogOut } from "react-icons/bi";
+import logo from '../../public/logo.png'
 // import TopNavbar from "./TopNavbar";
 
 const Sidebar = () => {
