@@ -13,7 +13,7 @@ const AddMeal = () => {
     useEffect(() => {
         const fetchAllMembers = async () => {
             try {
-                const response = await fetch("https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/allMember");
+                const response = await fetch("https://mess-management-back-end.vercel.app/allMember");
                 const data = await response.json();
                 setAllMember(data);
             } catch (error) {
@@ -79,7 +79,7 @@ const AddMeal = () => {
         // }));
 
         try {
-            const response = await fetch("https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/addMeal", {
+            const response = await fetch("https://mess-management-back-end.vercel.app/addMeal", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

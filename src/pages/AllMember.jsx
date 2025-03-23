@@ -13,7 +13,7 @@ const AllMember = () => {
     useEffect(() => {
         const fetchAllMembers = async () => {
             try {
-                const response = await fetch("https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/allMember",);
+                const response = await fetch("https://mess-management-back-end.vercel.app/allMember",);
                 const data = await response.json();
                 setAllMember(data);
             } catch (error) {
@@ -31,7 +31,7 @@ const AllMember = () => {
     const handleUpdate = async () => {
         if (!selectedMember) return;
 
-        const res = await fetch(`https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/memberUpdate/${selectedMember._id}`, {
+        const res = await fetch(`https://mess-management-back-end.vercel.app/memberUpdate/${selectedMember._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(selectedMember),
@@ -64,7 +64,7 @@ const AllMember = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // If user confirms, proceed with deletion
-                fetch(`https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/memberDelete/${_id}`, {
+                fetch(`https://mess-management-back-end.vercel.app/memberDelete/${_id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())

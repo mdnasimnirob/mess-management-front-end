@@ -41,7 +41,7 @@ const Router = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home />,
-                // loader: () => fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/meals')
+                // loader: () => fetch('https://mess-management-back-end.vercel.app/meals')
             }
             ,
             {
@@ -87,7 +87,7 @@ const Router = createBrowserRouter([
             {
                 path: '/addMeal',
                 element: <AddMeal />,
-                // loader: () => fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/allMember'),
+                // loader: () => fetch('https://mess-management-back-end.vercel.app/allMember'),
             }
             ,
             {
@@ -98,7 +98,7 @@ const Router = createBrowserRouter([
             {
                 path: '/allMember',
                 element: <AllMember />,
-                // loader: () => fetch('https://mess-management-back-clal7494o-mdnasimnirobs-projects.vercel.app/allMember'),
+                // loader: () => fetch('https://mess-management-back-end.vercel.app/allMember'),
             }
             ,
             {
