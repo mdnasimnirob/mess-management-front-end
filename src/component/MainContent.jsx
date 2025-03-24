@@ -7,6 +7,7 @@ const MainContent = () => {
     const [todayMeals, setTodayMeals] = useState(null);
 
     const [todayGuestMeals, setTodayGuestMeals] = useState(null);
+    const [todayMonthlyMeals, setMonthlyGuestMeals] = useState(null);
 
 
     useEffect(() => {
@@ -50,6 +51,15 @@ const MainContent = () => {
             )
             .catch(error => console.error(error)
             );
+        fetch('https://mess-management-back-end.vercel.app/guest-meals/monthly')
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data)
+                setMonthlyGuestMeals(data)
+            }
+            )
+            .catch(error => console.error(error)
+            );
 
 
 
@@ -85,7 +95,7 @@ const MainContent = () => {
                         </div>
                         <div className="flex text-center items-center gap-3">
                             <h2 className="text-xl font-semibold">Monthly guest Meals:</h2>
-                            <p className="text-xl text-center text-blue-600">{todayGuestMeals?.totalGuestMeals}</p>
+                            <p className="text-xl text-center text-blue-600">{todayMonthlyMeals?.totalGuestMeals}</p>
                         </div>
 
                     </div>
