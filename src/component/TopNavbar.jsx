@@ -100,7 +100,7 @@ const TopNavbar = () => {
 
                     {/* <span className="text-2xl font-semibold"><h5 id="drawer-navigation-label" className="text-xl text-transparent bg-gradient-to-r bg-clip-text  from-fuchsia-500 to-cyan-500 font-semibold text-gray-900  dark:text-gray-400 p-2">Mess Management</h5></span> */}
                     <div className="relative">
-                        <input className=" lg:ml-7 px-4  pr-9 py-[6px] focus:border-none focus: lg:w-[320px] w-40 rounded-full border-[#eaedf1] bg-[#f7f8f9]" type="search" placeholder="Search for results.." />
+                        <input className=" lg:ml-7 md:ml-3 px-4  pr-9 py-[6px] focus:border-none focus: lg:w-[320px] w-40 rounded-full border-[#eaedf1] bg-[#f7f8f9]" type="search" placeholder="Search for results.." />
                         <button className="absolute bottom-[9px] right-4  z-30 text-gray-500"><RiFindReplaceLine /></button>
                     </div>
                 </div>

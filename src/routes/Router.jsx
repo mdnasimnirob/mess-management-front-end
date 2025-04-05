@@ -16,6 +16,7 @@ import AddCost from "../pages/AddCost";
 import AllMember from "../pages/AllMember";
 import ChangeManager from "../pages/ChangeManager";
 import Error from "../pages/Error";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -23,7 +24,7 @@ import Error from "../pages/Error";
 const Router = createBrowserRouter([
     {
         path: '/',
-        element: <MainLayout />,
+        element: <PrivateRoute> <MainLayout /> </PrivateRoute>,
         errorElement: <Error />,
         children: [
             {
@@ -63,16 +64,7 @@ const Router = createBrowserRouter([
                 path: '/question',
                 element: <AddQuestion />
             }
-            ,
-            {
-                path: '/register',
-                element: <Register />
-            }
-            ,
-            {
-                path: '/login',
-                element: <Login />
-            }
+
             ,
             {
                 path: '/mealRequest',
@@ -106,6 +98,17 @@ const Router = createBrowserRouter([
                 element: <ChangeManager />
             }
         ]
+
+    }
+    ,
+    {
+        path: '/register',
+        element: <Register />
+    }
+    ,
+    {
+        path: '/login',
+        element: <Login />
     }
 ])
 

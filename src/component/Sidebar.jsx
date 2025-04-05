@@ -209,7 +209,7 @@ const Sidebar = () => {
                                             className={`text-3xl ${isActive ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'}`}
                                         />
                                         <span className="flex-1 ms-3 whitespace-nowrap dark:text-white group-hover:text-blue-600">
-                                            Add Mess Member
+                                            Add  Member
                                         </span>
                                     </>
                                 )}

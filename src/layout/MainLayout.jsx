@@ -49,7 +49,7 @@ const MainLayout = () => {
 
             <Toaster position="top-center" />
 
-            <div className={`fixed  top-0 z-40 w-full bg-white lg:rounded-lg shadow-md transition-all duration-300  ml-0   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] lg:left-[224px] lg:transition-all lg:duration-500" : "lg:w-[calc(100%-72px)]  lg:left-[72px] transition-all duration-500"}`}>
+            <div className={`fixed  top-0 z-40 w-full bg-white lg:rounded-lg shadow-md transition-all duration-300  ml-0   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] md:w-[calc(100%-230px)] lg:left-[224px] md:left-[224px] lg:transition-all lg:duration-500" : "lg:w-[calc(100%-72px)] md:w-[calc(100%-72px)]  lg:left-[72px] md:left-[64px] transition-all duration-500"}`}>
                 <TopNavbar />
             </div>
 
@@ -66,7 +66,7 @@ const MainLayout = () => {
                 </div> */}
 
 
-                <div className={`lg:fixed hidden bg-gray-100 lg:block md:block sm:hidden left-0 top-0 h-screen px-1 z-40 
+                <div className={`lg:fixed md:fixed hidden bg-gray-100 lg:block md:block sm:hidden left-0 top-0 h-screen px-1 z-40 
                      ${isSidebarOpen ?
                         "w-52 transition-all duration-500 overflow-hidden" :
                         "w-[57px] transition-all duration-500 overflow-hidden"}`}>
@@ -80,7 +80,7 @@ const MainLayout = () => {
 
                         {/* Text */}
                         <h5 id="drawer-navigation-label"
-                            className={` text-xl text-transparent bg-gradient-to-r bg-clip-text from-fuchsia-500 to-cyan-500 font-semibold text-gray-900 dark:text-gray-400 p-2 transition-opacity duration-500
+                            className={` text-[19px] text-transparent bg-gradient-to-r bg-clip-text from-fuchsia-500 to-cyan-500 font-semibold text-gray-900 dark:text-gray-400 p-2 transition-opacity duration-500
                          ${isSidebarOpen ?
                                     'opacity-100 w-[250px] ml-1  visible' :
                                     'hidden duration-1000 opacity-0 -w-9'}`}>
@@ -92,21 +92,11 @@ const MainLayout = () => {
                     <Sidebar />
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-                <div className={`lg:pt-[72px] pt-20 w-full md:pt-20   ${isSidebarOpen ? "lg:w-[calc(100%-230px)] lg:ml-56 lg:pr- transition-all duration-500  " : "lg:w-[calc(100%-72px)] w-full lg:ml-16 lg:pl-2 lg:pr- transition-all duration-500"}`}>
+                <div className={`lg:pt-[72px] pt-[72px] w-full md:pt-[72px]  ${isSidebarOpen ? "lg:w-[calc(100%-230px)] md:w-[calc(100%-230px)] lg:ml-56 md:ml-56 lg:pr- transition-all duration-500  " : "lg:w-[calc(100%-72px)] md:w-[calc(100%-72px)] w-full lg:ml-16 md:ml-16 lg:pl-2 lg:pr- transition-all duration-500"}`}>
 
                     <button
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        className={`lg:fixed hidden lg:block md:block sm:hidden z-40 -top-2 left-0 mt-6 bg-gray-200 p-2 rounded-md  text-blue-800 ${isSidebarOpen ? "lg:left-[235px] transition-all duration-500 " : "lg:left-[83px] transition-all duration-500 "}`}
+                        className={`lg:fixed md:fixed hidden lg:block md:block sm:hidden z-40 -top-2 left-0 mt-6 bg-gray-200 p-2 rounded-md  text-blue-800 ${isSidebarOpen ? "lg:left-[235px] md:left-[230px] transition-all duration-500 " : "lg:left-[83px] md:left-[70px] transition-all duration-500 "}`}
                     >
                         <RiMenu2Line className="text-xl" />
                     </button>

@@ -1,21 +1,27 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Chart from "../chart/Chart";
+import { AuthContexts } from "../providers/AuthProviders";
 
 const MainContent = () => {
-    const [monthlyMeals, setMonthlyMeals] = useState(null);
-    const [weeklyMeals, setWeeklyMeals] = useState(null);
-    const [todayMeals, setTodayMeals] = useState(null);
+    const { loading, user } = useContext(AuthContexts)
 
-    const [todayGuestMeals, setTodayGuestMeals] = useState(null);
-    const [todayMonthlyMeals, setMonthlyGuestMeals] = useState(null);
+    // const [load, setLoad] = useState(loading)
+    const [monthlyMeals, setMonthlyMeals] = useState([]);
+    const [weeklyMeals, setWeeklyMeals] = useState([]);
+    const [todayMeals, setTodayMeals] = useState([]);
+
+    const [todayGuestMeals, setTodayGuestMeals] = useState([]);
+    const [todayMonthlyMeals, setMonthlyGuestMeals] = useState([]);
 
 
     useEffect(() => {
         fetch('https://mess-management-back-end.vercel.app/meals/monthly')
             .then(res => res.json())
             .then((data) => {
-                // console.log(data)
+                console.log(data)
                 setMonthlyMeals(data)
+                loading(true);
+
             }
             )
             .catch(error => console.error(error)
@@ -26,6 +32,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setWeeklyMeals(data)
+                loading(true)
             }
             )
             .catch(error => console.error(error)
@@ -36,6 +43,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setTodayMeals(data)
+                loading(true)
             }
             )
             .catch(error => console.error(error)
@@ -47,6 +55,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setTodayGuestMeals(data)
+                loading(true)
             }
             )
             .catch(error => console.error(error)
@@ -56,6 +65,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setMonthlyGuestMeals(data)
+                loading(true)
             }
             )
             .catch(error => console.error(error)
@@ -63,7 +73,7 @@ const MainContent = () => {
 
 
 
-    }, [])
+    }, [monthlyMeals, todayMeals, todayGuestMeals])
 
     console.log(monthlyMeals, weeklyMeals, todayMeals, todayGuestMeals)
 
@@ -79,23 +89,38 @@ const MainContent = () => {
 
                 {/* Overview Section */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white p-4 rounded-lg shadow-md">
-                        <h2 className="text-xl font-semibold">Total Meals Served Monthly</h2>
-                        <p className="text-2xl text-blue-600">{monthlyMeals?.meals?.length}</p>
+                    <div className="bg-white p-4 rounded-lg shadow-md flex gap-2 justify-center ">
+
+                        <h2 className="text-xl font-semibold">Total Meals Served Monthly:</h2>
+                        <p className="text-2xl text-blue-600"> {loading ? 'loading' : (monthlyMeals?.meals?.length) + (todayMonthlyMeals?.totalGuestMeals)} </p>
+
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-md">
-                        <h2 className="text-xl font-semibold">Today Meals</h2>
-                        <p className="text-2xl text-blue-600">{
-                            todayMeals?.meals?.length === 0 ? <><span className="text-[16px] text-red-600 bg-yellow-100 px-3 py-1 rounded-md">No Meal Today</span></> : todayMeals?.meals?.length}</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-md">
-                        <div className="flex text-center items-center gap-3">
-                            <h2 className="text-xl font-semibold">Today guest Meals:</h2>
-                            <p className="text-2xl text-center text-blue-600">{todayGuestMeals?.totalGuestMeals}</p>
+                        <div className=" flex  gap-2">
+                            <h2 className="text-xl font-semibold">Today Meals:</h2>
+                            <p className="text-2xl text-blue-600">{loading ? 'loading' : todayMeals?.meals?.length === 0 ? <><span className="text-[16px] text-red-600 bg-yellow-100 px-3 py-1 rounded-md">No Meal Today</span></> : todayMeals?.meals?.length}
+                                {/* { todayMeals?.meals?.length === 0 ? <><span className="text-[16px] text-red-600 bg-yellow-100 px-3 py-1 rounded-md">No Meal Today</span></> : todayMeals?.meals?.length} */}
+                            </p>
                         </div>
-                        <div className="flex text-center items-center gap-3">
+                        <div className="flex  items-center gap-3 text-start">
+                            <h2 className="text-xl font-semibold">Today guest Meals:</h2>
+                            <p className="text-2xl text-center text-blue-600">{loading ? 'loading' : todayGuestMeals?.totalGuestMeals} </p>
+                        </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg shadow-md">
+
+                        {/* <div className="flex text-center items-center gap-3">
                             <h2 className="text-xl font-semibold">Monthly guest Meals:</h2>
-                            <p className="text-xl text-center text-blue-600">{todayMonthlyMeals?.totalGuestMeals}</p>
+                            <p className="text-xl text-center text-blue-600">{loading ? 'loading' : todayMonthlyMeals?.totalGuestMeals}</p>
+                        </div> */}
+
+                        <div className="flex items-center text-center ">
+                            <div>
+                                <p className="font-semibold text-xl text-start ">Today Meal Rate</p>
+                            </div>
+                            <div>
+                                <input className="w-1/3 h-8" type="number" />
+                            </div>
                         </div>
 
                     </div>
@@ -121,25 +146,27 @@ const MainContent = () => {
                     <table className="min-w-full border-collapse">
                         <thead>
                             <tr className="border-b">
-                                <th className="px-4 py-2 text-left">Order ID</th>
+                                <th className="px-4 py-2 text-left">Serial</th>
                                 <th className="px-4 py-2 text-left">User</th>
                                 <th className="px-4 py-2 text-left">Meal</th>
-                                <th className="px-4 py-2 text-left">Status</th>
+                                <th className="px-4 py-2 text-left">Guest</th>
+                                <th className="px-4 py-2 text-left">Total Cost</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="border-b">
-                                <td className="px-4 py-2">101</td>
-                                <td className="px-4 py-2">John Doe</td>
-                                <td className="px-4 py-2">Grilled Chicken</td>
-                                <td className="px-4 py-2">Pending</td>
-                            </tr>
-                            <tr className="border-b">
-                                <td className="px-4 py-2">102</td>
-                                <td className="px-4 py-2">Jane Smith</td>
-                                <td className="px-4 py-2">Pancakes</td>
-                                <td className="px-4 py-2">Completed</td>
-                            </tr>
+                            {
+                                todayMeals?.meals?.map((meal, index) => (
+                                    <tr key={index} className="border-b">
+                                        <td className="px-4 py-2">{index + 1}</td>
+                                        <td className="px-4 py-2">{meal?.memberName}</td>
+                                        <td className="px-4 py-2">{1}</td>
+                                        <td className="px-4 py-2">{meal?.guestMeals}</td>
+                                        <td className="px-4 py-2"></td>
+                                    </tr>
+                                ))
+                            }
+
+
                         </tbody>
                     </table>
                 </div>
@@ -148,8 +175,8 @@ const MainContent = () => {
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <h2 className="text-2xl font-semibold mb-4">Registered Users</h2>
                     <ul className="space-y-3">
-                        <li>John Doe - Meal Plan A</li>
-                        <li>Jane Smith - Meal Plan B</li>
+                        <li><b>Name</b> : {user.displayName}</li>
+                        <li><b className="">Email</b>  : {user.email}</li>
                     </ul>
                 </div>
             </div>

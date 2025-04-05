@@ -108,8 +108,8 @@ const AllMember = () => {
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mb-14">
                 <table className="table text-center">
                     <thead>
-                        <tr>
-                            <th></th>
+                        <tr className="text-black">
+                            <th>Serial</th>
                             <th>Name</th>
                             <th>Address</th>
                             <th>Joining</th>
