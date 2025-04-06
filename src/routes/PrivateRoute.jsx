@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { AuthContexts } from "../providers/AuthProviders";
 import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
-import loader from '../../public/loading.json'
+import loader from '../../public/loadingProg.json'
 import Lottie from "lottie-react";
+
 
 
 const PrivateRoute = ({ children }) => {

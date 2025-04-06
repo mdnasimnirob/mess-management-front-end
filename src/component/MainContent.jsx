@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import Chart from "../chart/Chart";
 import { AuthContexts } from "../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const MainContent = () => {
-    const { loading, user } = useContext(AuthContexts)
+    const { user } = useContext(AuthContexts)
 
     // const [load, setLoad] = useState(loading)
     const [monthlyMeals, setMonthlyMeals] = useState([]);
@@ -12,6 +13,11 @@ const MainContent = () => {
 
     const [todayGuestMeals, setTodayGuestMeals] = useState([]);
     const [todayMonthlyMeals, setMonthlyGuestMeals] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [mealRate, setMealRate] = useState("");
+    const [changeValue, setChangeValue] = useState("");
+    console.log(changeValue)
+
 
 
     useEffect(() => {
@@ -20,7 +26,7 @@ const MainContent = () => {
             .then((data) => {
                 console.log(data)
                 setMonthlyMeals(data)
-                loading(true);
+                setLoading(false);
 
             }
             )
@@ -32,7 +38,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setWeeklyMeals(data)
-                loading(true)
+                setLoading(false)
             }
             )
             .catch(error => console.error(error)
@@ -43,7 +49,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setTodayMeals(data)
-                loading(true)
+                setLoading(false)
             }
             )
             .catch(error => console.error(error)
@@ -55,7 +61,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setTodayGuestMeals(data)
-                loading(true)
+                setLoading(false)
             }
             )
             .catch(error => console.error(error)
@@ -65,7 +71,7 @@ const MainContent = () => {
             .then((data) => {
                 // console.log(data)
                 setMonthlyGuestMeals(data)
-                loading(true)
+                setLoading(false)
             }
             )
             .catch(error => console.error(error)
@@ -75,7 +81,60 @@ const MainContent = () => {
 
     }, [monthlyMeals, todayMeals, todayGuestMeals])
 
-    console.log(monthlyMeals, weeklyMeals, todayMeals, todayGuestMeals)
+    // console.log(monthlyMeals, weeklyMeals, todayMeals, todayGuestMeals)
+
+    const handleMealRate = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const rate = form.mealRate.value;
+
+        console.log(rate)
+        const melaRatee = { mealRate: rate }
+
+        if (!changeValue) {
+            return toast.error("Please enter a meal rate.");
+        }
+
+        fetch("https://mess-management-back-end.vercel.app/mealRate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(melaRatee),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                if (data.result.modifiedCount > 0) {
+                    toast.success("Meal rate set successfully!");
+                    setMealRate('');
+                }
+                if (data.result.modifiedCount === 0) {
+                    toast.error("Meal rate not Changing!");
+                    setMealRate('');
+                }
+
+            })
+            .catch((err) => {
+                console.error(err);
+                alert("Error setting meal rate.");
+            });
+
+    }
+
+    useEffect(() => {
+        fetch('https://mess-management-back-end.vercel.app/mealRate', {
+            method: 'get'
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                setMealRate(data.rate.mealRate)
+                if (data.rate.mealRate) {
+                    setChangeValue(data.rate.mealRate)
+                }
+            })
+
+    }, [mealRate])
+
 
     return (
 
@@ -89,10 +148,9 @@ const MainContent = () => {
 
                 {/* Overview Section */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white p-4 rounded-lg shadow-md flex gap-2 justify-center ">
-
-                        <h2 className="text-xl font-semibold">Total Meals Served Monthly:</h2>
-                        <p className="text-2xl text-blue-600"> {loading ? 'loading' : (monthlyMeals?.meals?.length) + (todayMonthlyMeals?.totalGuestMeals)} </p>
+                    <div className="bg-white p-4 rounded-lg shadow-md flex gap-2 text-start ">
+                        <h2 className="text-xl font-semibold text-start">Monthly Total Meals:</h2>
+                        <p className="text-2xl text-blue-600"> {loading ? 'loading' : ((monthlyMeals?.meals?.length) + (todayMonthlyMeals?.totalGuestMeals) || 'server error')} </p>
 
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow-md">
@@ -115,12 +173,31 @@ const MainContent = () => {
                         </div> */}
 
                         <div className="flex items-center text-center ">
-                            <div>
-                                <p className="font-semibold text-xl text-start ">Today Meal Rate</p>
+                            <div className="text-start flex flex-col">
+                                <div>
+                                    <p className="font-semibold text-xl text-start ">Set Today Meal Rate : <span className="text-blue-600">{loading ? 'loading' : mealRate}</span></p>
+                                </div>
+                                <form onSubmit={handleMealRate}>
+                                    <div className="lg:flex gap-2">
+                                        <input
+                                            className="w-3/4 h-8 border-none bg-gray-200 text-black mt-2 cursor-pointer px-2"
+                                            placeholder="Enter MR"
+                                            type="number"
+                                            name="mealRate"
+                                            value={changeValue}
+                                            defaultValue={mealRate}
+                                            onChange={(e) => setChangeValue(e.target.value)}
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-blue-600 text-white rounded-md mt-2"
+                                            type="submit"
+                                        >
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                            <div>
-                                <input className="w-1/3 h-8" type="number" />
-                            </div>
+
                         </div>
 
                     </div>
