@@ -76,8 +76,8 @@ const Login = () => {
                 <div className="card-header d-flex justify-content-between align-items-center ">
                     <h5 className="mb-2 font-semibold pt-4 px-6 text-center mt- text-3xl">Login Please</h5>
                 </div>
-                <div className="flex justify-center items-center">
-                    <div className="card-body flex-1">
+                <div className="lg:flex justify-center items-center lg:flex-row md:flex-row flex ">
+                    <div className="card-body flex-1 ">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="grid grid-cols-1 lg:grid-cols-1 gap-3 px-6 ">
 
@@ -126,7 +126,7 @@ const Login = () => {
                             <h3 className="font-normal text-sm text-gray-700">Do not have Account ? please <NavLink to='/register'><span className="font-bold text-blue-600">Register</span></NavLink></h3>
                         </div>
                     </div>
-                    <div className="flex-1 ">
+                    <div className="flex-1 hidden md:block lg:block ">
                         <Lottie className="h-[550px]" animationData={loginData}></Lottie>
                     </div>
                 </div>

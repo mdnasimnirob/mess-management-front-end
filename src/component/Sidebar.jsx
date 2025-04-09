@@ -9,6 +9,7 @@ import { AuthContexts } from "../providers/AuthProviders";
 import toast from "react-hot-toast";
 import { BiLogOut } from "react-icons/bi";
 import logo from '../../public/logo.png'
+import { TbListDetails } from "react-icons/tb";
 // import TopNavbar from "./TopNavbar";
 
 const Sidebar = () => {
@@ -130,7 +131,34 @@ const Sidebar = () => {
                                 )}
                             </NavLink>
                         </li>
+
                         <li>
+                            <NavLink
+                                to="/addCost"
+                                onClick={() => setOpen(false)}
+                                className={({ isActive }) =>
+                                    `flex p-2 items-center cursor-pointer rounded-sm w-full group 
+                              ${isActive ?
+                                        'text-blue-600 bg-gray-200 dark:bg-gray-700' :
+                                        'text-gray-900 dark:text-white'}
+                                hover:bg-gray-200 dark:hover:bg-gray-700`
+                                }
+                            >
+                                {({ isActive }) => (
+                                    <>
+                                        <FaShoppingCart
+                                            className={`text-3xl ${isActive ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'}`}
+                                        />
+                                        <span className="flex-1 ms-3 whitespace-nowrap dark:text-white group-hover:text-blue-600">
+                                            Add Cost
+                                        </span>
+                                    </>
+                                )}
+                            </NavLink>
+                        </li>
+
+
+                        {/* <li>
                             <NavLink
                                 to="/mealRequest"
                                 onClick={() => setOpen(false)}
@@ -154,7 +182,8 @@ const Sidebar = () => {
                                     </>
                                 )}
                             </NavLink>
-                        </li>
+                        </li> */}
+
                         {/* <li>
                     
                                                 <div className="flex justify-between">
@@ -239,9 +268,13 @@ const Sidebar = () => {
                                 )}
                             </NavLink>
                         </li>
+
+
+
+
                         <li>
                             <NavLink
-                                to="/addCost"
+                                to="/AllMealsDetails"
                                 onClick={() => setOpen(false)}
                                 className={({ isActive }) =>
                                     `flex p-2 items-center cursor-pointer rounded-sm w-full group 
@@ -253,16 +286,15 @@ const Sidebar = () => {
                             >
                                 {({ isActive }) => (
                                     <>
-                                        <FaShoppingCart
-                                            className={`text-3xl ${isActive ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'}`}
-                                        />
+                                        <TbListDetails className={`text-3xl ${isActive ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'}`} />
                                         <span className="flex-1 ms-3 whitespace-nowrap dark:text-white group-hover:text-blue-600">
-                                            Add Cost
+                                            All Meals Details
                                         </span>
                                     </>
                                 )}
                             </NavLink>
                         </li>
+
                         <li>
                             <NavLink
                                 to="/changeManager"

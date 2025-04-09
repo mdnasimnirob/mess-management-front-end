@@ -17,6 +17,8 @@ import AllMember from "../pages/AllMember";
 import ChangeManager from "../pages/ChangeManager";
 import Error from "../pages/Error";
 import PrivateRoute from "./PrivateRoute";
+import { element } from "prop-types";
+import AllMealsDetails from "../pages/AllMealsDetails";
 
 
 
@@ -91,6 +93,11 @@ const Router = createBrowserRouter([
                 path: '/allMember',
                 element: <AllMember />,
                 // loader: () => fetch('https://mess-management-back-end.vercel.app/allMember'),
+            }
+            ,
+            {
+                path: '/allMealsDetails',
+                element: <AllMealsDetails />,
             }
             ,
             {

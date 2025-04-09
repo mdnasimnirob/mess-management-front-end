@@ -6,6 +6,7 @@ const Home = () => {
     const [selectedMonth, setSelectedMonth] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedMeal, setSelectedMeal] = useState(null);
+    // const [monthlyPerMemberMeal, setMonthlyPerMemberMeal] = useState([]);
 
     const getCurrentMonth = () => {
         const today = new Date();
@@ -151,6 +152,25 @@ const Home = () => {
                         </tbody>
                     </table>
                 )}
+
+                {/* <table className="table-auto w-full mt-4">
+                    <thead>
+                        <tr>
+                            <th className="px-4 py-2">Member Name</th>
+                            <th className="px-4 py-2">Total Meals</th>
+                            <th className="px-4 py-2">Guest Meals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {monthlyPerMemberMeal.map((member, index) => (
+                            <tr key={index}>
+                                <td className="border px-4 py-2">{member.memberName}</td>
+                                <td className="border px-4 py-2">{member.totalMeals}</td>
+                                <td className="border px-4 py-2">{member.guestMeals}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table> */}
 
                 {/* Modal for Meal Details */}
                 {isModalOpen && (

@@ -7,7 +7,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 const Chart = () => {
     const data = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], // Months or your time range
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',], // Months or your time range
         datasets: [
             {
                 label: 'Meals Served',

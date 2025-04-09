@@ -207,17 +207,6 @@ const MainContent = () => {
                 {/* Add the Chart Component */}
                 <Chart />
 
-                {/* Menu Management Section */}
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                    <h2 className="text-2xl font-semibold mb-4">Today's Menu</h2>
-                    <ul className="space-y-3">
-                        <li>Breakfast: Pancakes, Eggs, and Toast</li>
-                        <li>Lunch: Grilled Chicken, Rice, and Veggies</li>
-                        <li>Snacks: Sandwiches and Fresh Juices</li>
-                    </ul>
-                </div>
-
-
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <h2 className="text-2xl font-semibold mb-4">Current Today Meals </h2>
                     <table className="min-w-full border-collapse">
@@ -247,6 +236,19 @@ const MainContent = () => {
                         </tbody>
                     </table>
                 </div>
+
+                {/* Menu Management Section */}
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                    <h2 className="text-2xl font-semibold mb-4">Today's Menu</h2>
+                    <ul className="space-y-3">
+                        <li>Breakfast: Pancakes, Eggs, and Toast</li>
+                        <li>Lunch: Grilled Chicken, Rice, and Veggies</li>
+                        <li>Snacks: Sandwiches and Fresh Juices</li>
+                    </ul>
+                </div>
+
+
+
 
                 {/* User Management Section */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
