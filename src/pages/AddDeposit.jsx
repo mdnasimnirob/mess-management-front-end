@@ -14,7 +14,7 @@ const AddDeposit = () => {
             )
     }, [allMember])
 
-    // console.log(allMember)
+    console.log(allMember)
 
 
     const handleDepositSubmit = (e, memberId) => {

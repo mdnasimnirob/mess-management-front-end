@@ -10,6 +10,31 @@ const AllMealsDetails = () => {
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
     const [mealRate, setMealRate] = useState("");
+    const [blance, setBlance] = useState("");
+
+    console.log(blance)
+
+    // const getMemberDeposit = (memberId) => {
+    //     const member = blance?.find((m) => m._id === memberId);
+    //     return member?.deposit || 0;
+    // };
+
+    const getMemberDeposit = (memberId) => {
+        const member = blance?.find((m) => m._id === memberId);
+        if (!member || !member.depositHistory) return 0;
+
+        const [selectedYear, selectedMonthValue] = selectedMonth.split("-");
+        const filteredDeposit = member.depositHistory.filter((entry) => {
+            const depositDate = new Date(entry.depositDate);
+            return (
+                depositDate.getFullYear() === parseInt(selectedYear) &&
+                depositDate.getMonth() + 1 === parseInt(selectedMonthValue)
+            );
+        });
+
+        const total = filteredDeposit.reduce((sum, entry) => sum + entry.amount, 0);
+        return total;
+    };
 
     console.log(mealRate)
 
@@ -21,6 +46,17 @@ const AllMealsDetails = () => {
         return `${year}-${month}`;
     };
 
+    const fetchMemberBlance = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/allMember");
+            const data = await response.json();
+            setBlance(data);
+        } catch (error) {
+            console.error("Error fetching meals:", error);
+        }
+
+    }
+
     const fetchData = async () => {
         try {
             const response = await fetch("https://mess-management-back-end.vercel.app/meals/monthly/by-member");
@@ -31,6 +67,7 @@ const AllMealsDetails = () => {
         }
 
     }
+
     const fetchMealsRate = async () => {
         try {
             const response = await fetch("https://mess-management-back-end.vercel.app/mealRate");
@@ -48,6 +85,7 @@ const AllMealsDetails = () => {
     }
 
     useEffect(() => {
+        fetchMemberBlance()
         fetchData()
         fetchMealsRate()
         setSelectedMonth(getCurrentMonth());
@@ -137,21 +175,29 @@ const AllMealsDetails = () => {
                             {/* <th className="px-4 py-2 text-left">Month</th> */}
                             <th className="px-4 py-2 text-left">Total Meals</th>
                             <th className="px-4 py-2 text-left">Total Cost</th>
+                            <th className="px-4 py-2 text-left">Remaining Balance</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            filteredMeals?.map((meals, index) => (
-                                <tr key={index} className="border-b ">
-                                    {/* <td className="px-4 py-2">{index + 1}</td> */}
-                                    <td className="px-4 py-2">{meals?.memberName}</td>
-                                    <td className="px-8 py-2 ">{meals?.totalMeals}</td>
-                                    <td className="px-8 py-2">{meals?.guestMeals}</td>
-                                    {/* <td className="px-4 py-2">{meals?.month}</td> */}
-                                    <td className="px-10 py-2">{meals?.totalMeals + meals?.guestMeals}</td>
-                                    <td className="px-10 py-2">{mealRate * (meals?.totalMeals + meals?.guestMeals)}</td>
-                                </tr>
-                            ))
+                            filteredMeals?.map((meals, index) => {
+                                const deposite = getMemberDeposit(meals.memberId) || 0;
+                                const totalCost = mealRate * (meals?.totalMeals + meals?.guestMeals);
+                                const remaining = deposite - totalCost;
+                                console.log(deposite);
+                                return (
+                                    <tr key={index} className="border-b ">
+                                        {/* <td className="px-4 py-2">{index + 1}</td> */}
+                                        <td className="px-4 py-2">{meals?.memberName}</td>
+                                        <td className="px-8 py-2 ">{meals?.totalMeals}</td>
+                                        <td className="px-8 py-2">{meals?.guestMeals}</td>
+                                        {/* <td className="px-4 py-2">{meals?.month}</td> */}
+                                        <td className="px-10 py-2">{meals?.totalMeals + meals?.guestMeals}</td>
+                                        <td className="px-10 py-2">{totalCost}</td>
+                                        <td className="px-10 py-2">{remaining.toFixed(2)}</td>
+                                    </tr>
+                                )
+                            })
                         }
 
 
