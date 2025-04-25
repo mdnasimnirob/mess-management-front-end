@@ -129,7 +129,7 @@ const AddMeal = () => {
                                     min="0"
                                     value={selectedMeals[member._id]?.guestMeals || ""}
                                     onChange={(e) => handleGuestChange(member._id, e.target.value)}
-                                    className="border-none bg-gray-200 px-0.5 py-0.5 w-12 text-center"
+                                    className="no-arrow border-none bg-gray-200 px-0.5 py-0.5 w-12 text-center"
                                     disabled={hasMealToday(member._id)}
                                 />
                             </td>

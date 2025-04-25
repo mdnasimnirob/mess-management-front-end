@@ -23,7 +23,7 @@ const AllMealsDetails = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/meals/monthly/by-member");
+            const response = await fetch("https://mess-management-back-end.vercel.app/meals/monthly/by-member");
             const data = await response.json();
             setAllMealsDetaisl(data);
         } catch (error) {
@@ -33,7 +33,7 @@ const AllMealsDetails = () => {
     }
     const fetchMealsRate = async () => {
         try {
-            const response = await fetch("http://localhost:5000/mealRate");
+            const response = await fetch("https://mess-management-back-end.vercel.app/mealRate");
             const data = await response.json();
             const rate = data.rate.mealRate;
 
@@ -107,7 +107,7 @@ const AllMealsDetails = () => {
     return (
         <div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-2xl font-semibold mb-4">All Meals Detaila </h2>
+                <h2 className="text-2xl font-semibold mb-4">All Meals Details </h2>
 
                 <div className="flex justify-between gap-1 p-3 ">
                     <div>
@@ -142,14 +142,14 @@ const AllMealsDetails = () => {
                     <tbody>
                         {
                             filteredMeals?.map((meals, index) => (
-                                <tr key={index} className="border-b">
+                                <tr key={index} className="border-b ">
                                     {/* <td className="px-4 py-2">{index + 1}</td> */}
                                     <td className="px-4 py-2">{meals?.memberName}</td>
-                                    <td className="px-4 py-2">{meals?.totalMeals}</td>
-                                    <td className="px-4 py-2">{meals?.guestMeals}</td>
+                                    <td className="px-8 py-2 ">{meals?.totalMeals}</td>
+                                    <td className="px-8 py-2">{meals?.guestMeals}</td>
                                     {/* <td className="px-4 py-2">{meals?.month}</td> */}
-                                    <td className="px-4 py-2">{meals?.totalMeals + meals?.guestMeals}</td>
-                                    <td className="px-4 py-2">{mealRate * (meals?.totalMeals + meals?.guestMeals)}</td>
+                                    <td className="px-10 py-2">{meals?.totalMeals + meals?.guestMeals}</td>
+                                    <td className="px-10 py-2">{mealRate * (meals?.totalMeals + meals?.guestMeals)}</td>
                                 </tr>
                             ))
                         }

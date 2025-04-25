@@ -180,7 +180,7 @@ const MainContent = () => {
                                 <form onSubmit={handleMealRate}>
                                     <div className="lg:flex gap-2">
                                         <input
-                                            className="w-3/4 h-8 border-none bg-gray-200 text-black mt-2 cursor-pointer px-2"
+                                            className="no-arrow w-3/4 h-8 border-none bg-gray-200 text-black mt-2 cursor-pointer px-2"
                                             placeholder="Enter MR"
                                             type="number"
                                             name="mealRate"
