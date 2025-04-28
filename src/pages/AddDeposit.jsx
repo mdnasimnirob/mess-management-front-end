@@ -5,7 +5,7 @@ const AddDeposit = () => {
     const [allMember, setAllMember] = useState(null)
 
     useEffect(() => {
-        fetch("http://localhost:5000/allMember")
+        fetch("https://mess-management-back-end.vercel.app/allMember")
             .then(res => res.json())
             .then(data => {
                 setAllMember(data);
@@ -22,7 +22,7 @@ const AddDeposit = () => {
         const amount = parseFloat(e.target.amount.value);
         const depositDate = new Date();
 
-        fetch('http://localhost:5000/addDeposit', {
+        fetch('https://mess-management-back-end.vercel.app/addDeposit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const AddDeposit = () => {
             .then((data) => {
                 console.log('Deposit added', data);
                 // Re-fetch members after update
-                fetch("http://localhost:5000/allMember")
+                fetch("https://mess-management-back-end.vercel.app/allMember")
                     .then(res => res.json())
                     .then(data => setAllMember(data));
             });

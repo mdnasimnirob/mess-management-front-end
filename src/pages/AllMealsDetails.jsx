@@ -72,7 +72,7 @@ const AllMealsDetails = () => {
 
     const fetchMemberBlance = async () => {
         try {
-            const response = await fetch("http://localhost:5000/allMember");
+            const response = await fetch("https://mess-management-back-end.vercel.app/allMember");
             const data = await response.json();
             setBlance(data);
         } catch (error) {
